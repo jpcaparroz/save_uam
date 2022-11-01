@@ -11,7 +11,7 @@ public class Cliente {
 
             Save stub = (Save) registry.lookup("Save");
 
-            stub.cadastrar("teste123@cliente.java", "Cliente-Java");
+            stub.login("teste121243@cliente.java");
 
 
         } catch (Exception e) {

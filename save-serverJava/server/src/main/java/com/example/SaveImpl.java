@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SaveImpl implements Save {
@@ -13,7 +14,7 @@ public class SaveImpl implements Save {
 
     public boolean cadastrar(String email, String nome) throws RemoteException {
 
-        String sql = "INSERT INTO Usuario(email,nome) VALUES (?,?)";
+        String sql = "INSERT or IGNORE into Usuario(email,nome) VALUES (?,?)";
 
         try {
 
@@ -32,6 +33,34 @@ public class SaveImpl implements Save {
             System.out.println(e.getMessage());
 
             return false;
+        }
+
+    }
+
+    public String login(String login) throws RemoteException {
+
+        String sql = "SELECT * FROM Usuario WHERE email=?";
+
+        try {
+
+            Connection connection = DriverManager.getConnection(bd);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, login);
+            ResultSet result = statement.executeQuery();
+
+            if (result.next()) {
+                
+                System.out.println(result.getString(1));
+                return result.getString(1);
+
+            }
+
+            return "erro";
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+            return "Nao tem! =(";
         }
 
     }     
