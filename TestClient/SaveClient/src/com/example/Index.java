@@ -1,13 +1,29 @@
 package com.example;
 
+import com.example.models.Usuario;
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class Index extends javax.swing.JFrame {
 
     public Index() {
         initComponents();
-        
+
         apagar();
     }
     
+    //Método para aparecer uma mensagem pop-up
+    public void mensagemPopUp(String mensagem){
+        JOptionPane.showMessageDialog(null, mensagem);
+    }
+    
+    //Método para esconder Ações de Cadastro
     public void apagar(){
         nomeBox.disable();
         nomeBox.hide();
@@ -64,6 +80,11 @@ public class Index extends javax.swing.JFrame {
         entrarButton.setContentAreaFilled(false);
         entrarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         entrarButton.setFocusPainted(false);
+        entrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entrarButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 453, -1, -1));
 
         cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cadastrar.png"))); // NOI18N
@@ -72,6 +93,11 @@ public class Index extends javax.swing.JFrame {
         cadastrar.setContentAreaFilled(false);
         cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cadastrar.setFocusPainted(false);
+        cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 528, -1, -1));
 
         loginField.setFont(new java.awt.Font("JetBrains Mono", 1, 12)); // NOI18N
@@ -135,7 +161,8 @@ public class Index extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Ir para a tela de Cadastro do Save
     private void cadastrarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarButtonMouseClicked
         
         nomeBox.show();
@@ -160,7 +187,8 @@ public class Index extends javax.swing.JFrame {
         entrarButton.hide();
         cadastrarButton.hide();
     }//GEN-LAST:event_cadastrarButtonMouseClicked
-
+    
+    //Voltar para o Login
     private void voltarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarButtonMouseClicked
         
         helpText.show();
@@ -171,6 +199,66 @@ public class Index extends javax.swing.JFrame {
         
         apagar();
     }//GEN-LAST:event_voltarButtonMouseClicked
+    
+    //Login no aplicativo Save
+    private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
+
+        String login = loginField.getText();
+
+        try {
+
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+
+            Save stub = (Save) registry.lookup("Save");
+            
+            Usuario user = new Usuario();
+            
+            user = stub.nomeUsuario(login);
+
+            if (stub.login(login) == true) {
+
+                Home home = new Home(user.getNome(), user.getEmail());
+
+                home.setVisible(true);
+                this.dispose();
+
+            } else {
+                mensagemPopUp("Login não encontrado ");
+                
+                System.out.println(stub.login(login));
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_entrarButtonActionPerformed
+    
+    //Botão para cadastro dentro do Save
+    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
+
+        String email = emailField.getText();
+        String nome = nomeField.getText();
+
+        try {
+
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+
+            Save stub = (Save) registry.lookup("Save");
+
+            if (stub.cadastrar(email, nome) == true) {
+
+                mensagemPopUp("Usuario " + nome + " cadastrado!");
+
+            } else {
+                mensagemPopUp("Email já cadastrado =(");
+
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_cadastrarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -10,10 +10,9 @@ public class Cliente {
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
             Save stub = (Save) registry.lookup("Save");
-
-            stub.login("teste121243@cliente.java");
-
-
+            
+            System.out.println(stub.login("joao@testando.java"));
+            
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
