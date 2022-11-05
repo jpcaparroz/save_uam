@@ -1,6 +1,7 @@
 import sqlite3
 from flask import Flask, request, render_template
 from flask import g
+from flask import jsonify, make_response
 
 dataServer = './save-bd.db'
 
@@ -74,3 +75,33 @@ def filmesUsuario():
     banco.close()
 
     return render_template ("test.html", result = result)
+
+@app.route('/apiusuario', methods = ['GET',])
+def apiUsuario():
+    banco = carregaBanco()
+    cur = banco.cursor()
+
+    result = cur.execute("""
+    SELECT * FROM usuario 
+    """,
+    ).fetchall()
+    
+    banco.commit()
+    banco.close()
+
+    return make_response (jsonify (email = result.index(1), nome = result.index(2)))
+
+@app.route('/apifilmesusuario', methods = ['GET',])
+def apiFilmesUsuario():
+    banco = carregaBanco()
+    cur = banco.cursor()
+
+    result = cur.execute("""
+    SELECT * FROM filmeusuario  
+    """,
+    ).fetchall()
+    
+    banco.commit()
+    banco.close()
+
+    return jsonify (login = result.login, nome = result.nome)
