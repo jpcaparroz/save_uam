@@ -1,11 +1,19 @@
 package com.example;
 
 import com.example.models.*;
+import java.awt.Image;
+import java.io.InputStream;
+import java.net.URL;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,16 +21,17 @@ public class Filmes extends javax.swing.JFrame {
     
     Usuario user;
     List<FilmeUsuario> listaFilme = new ArrayList<>();
+    int count = 0;
  
     public Filmes() {
         initComponents();
         
         listarFilmes();
-        esconder();
-        
+        exibirMenu();
     }
-
-    public Filmes(Usuario user){
+    
+    //Construtor recebendo user
+    public Filmes(Usuario user) {
         initComponents();
         
         this.user = user;
@@ -30,15 +39,58 @@ public class Filmes extends javax.swing.JFrame {
         nomeLabel.setText(user.getNome());
         
         listarFilmes();
-        esconder();
+        exibirMenu();
     }
     
-    //Método para esconder componentes na tela
-    public void esconder(){
-        
-        voltarButton.hide();
+    //Método para exibir funções da página Filmes
+    public void exibirMenu(){
+        listaButton.hide();
+        filmePoster.hide();
         filmesBox.hide();
         scrollBox.hide();
+        filmesTable.hide();
+        voltarButton.hide();
+        
+        listaButton.show();
+        filmeButton.show();      
+    }
+    
+    //Método para exibir funções do lista
+    public void exibirLista(){
+        
+        scrollBox.show();
+        filmesTable.show();
+        voltarButton.show();
+        filmesBox.show();
+        
+        descLabel.hide();
+        nomeLabel.hide();
+        listaButton.hide();
+        filmeButton.hide();
+        filmePoster.hide();
+    }
+    
+    //Método para exibir funções do filme
+    public void exibirFilme(){
+        descLabel.hide();
+        nomeLabel.hide();
+        listaButton.hide();
+        filmeButton.hide();
+        
+        filmePoster.show();
+        voltarButton.show();
+        filmesBox.show(); 
+    }
+    
+    //redimensionando poster
+    public Icon poster(String imagem) throws Exception{
+        InputStream inputStream = new URL(imagem).openStream();
+        Image posterImage = ImageIO.read(inputStream);
+        
+        Image nova = posterImage.getScaledInstance(220, 270, Image.SCALE_SMOOTH);
+        
+        ImageIcon icon = new ImageIcon(nova);
+        return icon;
     }
     
     //Método para listar filmes
@@ -77,6 +129,7 @@ public class Filmes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoMini = new javax.swing.JLabel();
         listaButton = new javax.swing.JButton();
+        filmePoster = new javax.swing.JLabel();
         filmeButton = new javax.swing.JButton();
         voltarButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
@@ -109,6 +162,7 @@ public class Filmes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(listaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 401, -1, -1));
+        jPanel1.add(filmePoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 220, 270));
 
         filmeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/porFilmeIcon.png"))); // NOI18N
         filmeButton.setBorder(null);
@@ -196,35 +250,27 @@ public class Filmes extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Volta para a visualização inicial do app Filmes
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
-        descLabel.show();
-        nomeLabel.show();
-        listaButton.show();
-        filmeButton.show();
-        
-        scrollBox.hide();
-        filmesTable.hide();
-        voltarButton.hide();
-        filmesBox.hide();
+        exibirMenu();
     }//GEN-LAST:event_voltarButtonActionPerformed
     
     //Exibir filmes através de uma lista
     private void listaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaButtonActionPerformed
-        
-        scrollBox.show();
-        filmesTable.show();
-        voltarButton.show();
-        filmesBox.show();
-        
-        descLabel.hide();
-        nomeLabel.hide();
-        listaButton.hide();
-        filmeButton.hide();
+        exibirLista();
     }//GEN-LAST:event_listaButtonActionPerformed
-
+    
+    //Exibe visualização unitaria por filme (com poster)
     private void filmeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filmeButtonActionPerformed
-        // TODO add your handling code here:
+        exibirFilme();
+        
+        try {
+            System.out.println(listaFilme.get(count).getPosterFilme());
+            filmePoster.setIcon(poster(listaFilme.get(0).getPosterFilme()));
+        } catch (Exception ex) {
+            Logger.getLogger(Filmes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_filmeButtonActionPerformed
 
     // Volta para a página de login
@@ -286,6 +332,7 @@ public class Filmes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel descLabel;
     private javax.swing.JButton filmeButton;
+    private javax.swing.JLabel filmePoster;
     private javax.swing.JLabel filmesBox;
     private javax.swing.JTable filmesTable;
     private javax.swing.JPanel jPanel1;
