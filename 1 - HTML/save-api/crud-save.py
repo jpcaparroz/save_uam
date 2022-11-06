@@ -23,7 +23,7 @@ def criarTabela():
     scriptTabela = open ('schemas\schema.sql').read()
     banco.executescript(scriptTabela)
 
-@app.route('/')
+@app.route('/criartabelas')
 def index():
     banco = carregaBanco
     criarTabela()

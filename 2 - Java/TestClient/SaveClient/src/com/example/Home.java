@@ -1,13 +1,6 @@
 package com.example;
 
 import com.example.models.Usuario;
-import java.rmi.AccessException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Home extends javax.swing.JFrame {
@@ -18,11 +11,13 @@ public class Home extends javax.swing.JFrame {
         initComponents();
 
     }
-    
+
     public Home(Usuario user){
         initComponents();
         
         nomeLabel.setText(user.getNome());
+        
+        this.user = user;
     }
     
     //Método para aparecer uma mensagem pop-up
@@ -80,6 +75,11 @@ public class Home extends javax.swing.JFrame {
         filmesButton.setBorderPainted(false);
         filmesButton.setContentAreaFilled(false);
         filmesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        filmesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filmesButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 334, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -103,6 +103,14 @@ public class Home extends javax.swing.JFrame {
         index.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void filmesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filmesButtonActionPerformed
+        
+        Filmes filmes = new Filmes(this.user);
+        
+        filmes.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_filmesButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -1,27 +1,22 @@
 package com.example;
 
 import com.example.models.Usuario;
-import java.rmi.AccessException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AdminHome extends javax.swing.JFrame {
+    
+    Usuario user;
 
     public AdminHome() {
         initComponents();
 
     }
-    
+
     public AdminHome(Usuario user){
         initComponents();
         
-        emailLabel.setText(user.getEmail());
         nomeLabel.setText(user.getNome());
+        this.user = user;
     }
     
     //Método para aparecer uma mensagem pop-up
@@ -38,7 +33,7 @@ public class AdminHome extends javax.swing.JFrame {
         logoutButton = new javax.swing.JButton();
         olaLabel = new javax.swing.JLabel();
         nomeLabel = new javax.swing.JLabel();
-        filmesButton = new javax.swing.JButton();
+        usuariosButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -74,12 +69,17 @@ public class AdminHome extends javax.swing.JFrame {
         nomeLabel.setText("NOME");
         jPanel1.add(nomeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 490, -1));
 
-        filmesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/usersIcon.png"))); // NOI18N
-        filmesButton.setBorder(null);
-        filmesButton.setBorderPainted(false);
-        filmesButton.setContentAreaFilled(false);
-        filmesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 334, -1, -1));
+        usuariosButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/usersIcon.png"))); // NOI18N
+        usuariosButton.setBorder(null);
+        usuariosButton.setBorderPainted(false);
+        usuariosButton.setContentAreaFilled(false);
+        usuariosButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        usuariosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuariosButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(usuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 334, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,6 +102,14 @@ public class AdminHome extends javax.swing.JFrame {
         index.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void usuariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosButtonActionPerformed
+        Users users = new Users(user);
+        
+        users.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_usuariosButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -139,11 +147,11 @@ public class AdminHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton filmesButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoMini;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JLabel olaLabel;
+    private javax.swing.JButton usuariosButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,8 +12,7 @@ public class Index extends javax.swing.JFrame {
 
         apagar();
     }
-    
-    //Método para aparecer uma mensagem pop-up
+
     public void mensagemPopUp(String mensagem){
         JOptionPane.showMessageDialog(null, mensagem);
     }
@@ -197,7 +196,7 @@ public class Index extends javax.swing.JFrame {
     
     //Voltar para o Login
     private void voltarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarButtonMouseClicked
-        
+
         telaLogin();
     }//GEN-LAST:event_voltarButtonMouseClicked
     
@@ -271,6 +270,10 @@ public class Index extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cadastrarActionPerformed
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

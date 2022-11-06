@@ -1,29 +1,59 @@
 package com.example;
 
 import com.example.models.Usuario;
-import java.rmi.AccessException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Users extends javax.swing.JFrame {
     
     Usuario user;
-
+ 
     public Users() {
         initComponents();
-
+        
+        listarUsuarios();
     }
-    
+
     public Users(Usuario user){
         initComponents();
+        listarUsuarios();
         
         this.user = user;
     }
+    
+    //Listar Usuarios
+    public void listarUsuarios() { 
+        
+        DefaultTableModel defaultUsuarios = (DefaultTableModel) usuariosTable.getModel();
+        defaultUsuarios.setRowCount(0);
+
+        try {
+
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+
+            Save stub = (Save) registry.lookup("Save");
+            
+            List <Usuario> usuarios = new ArrayList<>();
+            
+            usuarios = stub.getUsuarios();
+            
+            System.out.println(usuarios.get(0).getEmail());
+            
+            for (Usuario listaUser : usuarios) {
+                String tabelaUsuarios[] = {listaUser.getEmail(), listaUser.getNome()};
+                defaultUsuarios.addRow(tabelaUsuarios);
+                
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    } 
     
     //Método para aparecer uma mensagem pop-up
     public void mensagemPopUp(String mensagem){
@@ -35,9 +65,10 @@ public class Users extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        usuariosTable = new javax.swing.JTable();
         logoMini = new javax.swing.JLabel();
-        logoutButton = new javax.swing.JButton();
-        filmesButton = new javax.swing.JButton();
+        voltarButton = new javax.swing.JButton();
         logoMini1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,27 +80,50 @@ public class Users extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1024, 768));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setFont(new java.awt.Font("JetBrains Mono", 1, 12)); // NOI18N
+
+        usuariosTable.setBackground(new java.awt.Color(255, 255, 255));
+        usuariosTable.setFont(new java.awt.Font("JetBrains Mono", 1, 12)); // NOI18N
+        usuariosTable.setForeground(new java.awt.Color(0, 0, 0));
+        usuariosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "E-mail", "Nome"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(usuariosTable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 830, 590));
+
         logoMini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/saveLogoMini.png"))); // NOI18N
         jPanel1.add(logoMini, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/voltar2.png"))); // NOI18N
-        logoutButton.setBorder(null);
-        logoutButton.setBorderPainted(false);
-        logoutButton.setContentAreaFilled(false);
-        logoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+        voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/voltar2.png"))); // NOI18N
+        voltarButton.setBorder(null);
+        voltarButton.setBorderPainted(false);
+        voltarButton.setContentAreaFilled(false);
+        voltarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutButtonActionPerformed(evt);
+                voltarButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(986, 10, -1, -1));
-
-        filmesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/usersIcon.png"))); // NOI18N
-        filmesButton.setBorder(null);
-        filmesButton.setBorderPainted(false);
-        filmesButton.setContentAreaFilled(false);
-        filmesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 334, -1, -1));
+        jPanel1.add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(986, 10, -1, -1));
 
         logoMini1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/controleBox.png"))); // NOI18N
         jPanel1.add(logoMini1, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 36, -1, -1));
@@ -89,12 +143,12 @@ public class Users extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+    private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
         AdminHome admin = new AdminHome(user);
         
         admin.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_logoutButtonActionPerformed
+    }//GEN-LAST:event_voltarButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -136,10 +190,11 @@ public class Users extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton filmesButton;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logoMini;
     private javax.swing.JLabel logoMini1;
-    private javax.swing.JButton logoutButton;
+    private javax.swing.JTable usuariosTable;
+    private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }

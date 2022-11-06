@@ -1,8 +1,14 @@
 package com.example;
+
+import com.example.models.*;
+
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente {
+
     public static void main(String[] args) {
 
         try {
@@ -11,7 +17,17 @@ public class Cliente {
 
             Save stub = (Save) registry.lookup("Save");
             
-            System.out.println(stub.login("joao@testando.java"));
+            List<FilmeUsuario> lista = new ArrayList<>();
+            
+            List<Usuario> lista1 = new ArrayList<>();
+            
+            lista = stub.getFilmeUsuario("teste@gmail.com");
+            
+            lista1 = stub.getUsuarios();
+            
+            //System.out.println(lista1.get(2).getNome());
+            
+            //System.out.println(lista.get(0).getNomeFilme());
             
         } catch (Exception e) {
             System.out.println(e);
