@@ -12,7 +12,7 @@ import com.example.models.Usuario;
 
 public class SaveImpl implements Save {
 
-    String bd = "jdbc:sqlite:C:/Users/Joao/Desktop/Save/save-api/save-bd.db";
+    String bd = "jdbc:sqlite:D:/Eu/Pessoal/Faculdade/save_uam/1 - HTML/save-api/save-bd.db";
 
     // Método para cadastrar usuario
     public boolean cadastrar(String email, String nome) throws RemoteException {
@@ -67,7 +67,7 @@ public class SaveImpl implements Save {
     }
 
     // Método para retornar usuario
-    public Usuario nomeUsuario(String login) throws RemoteException {
+    public Usuario getUsuario(String login) throws RemoteException {
 
         String sql = "SELECT * FROM Usuario WHERE email=?";
 
@@ -91,9 +91,13 @@ public class SaveImpl implements Save {
 
                 System.out.println("Algum usuário tentou se conectar...");
                 
+            } else if (user.getEmail().equals("root@admin.com")) {
+
+                System.out.println("Administrador acaba de se conectar ao Save!");
+
             } else {
                 System.out.println("Usuario " + user.getNome() +    " acabou de se conectar!");
-            } 
+            }
 
             return user;
 

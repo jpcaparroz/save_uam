@@ -11,6 +11,6 @@ public interface Save extends Remote {
     
     public boolean login(String login) throws RemoteException;
     
-    public Usuario nomeUsuario(String login) throws RemoteException;
+    public Usuario getUsuario(String login) throws RemoteException;
     
 }

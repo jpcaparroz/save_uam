@@ -10,19 +10,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class Home extends javax.swing.JFrame {
+public class Users extends javax.swing.JFrame {
     
     Usuario user;
 
-    public Home() {
+    public Users() {
         initComponents();
 
     }
     
-    public Home(Usuario user){
+    public Users(Usuario user){
         initComponents();
         
-        nomeLabel.setText(user.getNome());
+        this.user = user;
     }
     
     //Método para aparecer uma mensagem pop-up
@@ -37,9 +37,8 @@ public class Home extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoMini = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
-        olaLabel = new javax.swing.JLabel();
-        nomeLabel = new javax.swing.JLabel();
         filmesButton = new javax.swing.JButton();
+        logoMini1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -53,7 +52,7 @@ public class Home extends javax.swing.JFrame {
         logoMini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/saveLogoMini.png"))); // NOI18N
         jPanel1.add(logoMini, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logoutIcon.png"))); // NOI18N
+        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/voltar2.png"))); // NOI18N
         logoutButton.setBorder(null);
         logoutButton.setBorderPainted(false);
         logoutButton.setContentAreaFilled(false);
@@ -65,22 +64,15 @@ public class Home extends javax.swing.JFrame {
         });
         jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(986, 10, -1, -1));
 
-        olaLabel.setFont(new java.awt.Font("Sansita", 1, 32)); // NOI18N
-        olaLabel.setForeground(new java.awt.Color(0, 0, 0));
-        olaLabel.setText("olá,");
-        jPanel1.add(olaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 143, -1, -1));
-
-        nomeLabel.setFont(new java.awt.Font("Sansita One", 1, 48)); // NOI18N
-        nomeLabel.setForeground(new java.awt.Color(0, 0, 0));
-        nomeLabel.setText("NOME");
-        jPanel1.add(nomeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 490, -1));
-
-        filmesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/FilmsIcon.png"))); // NOI18N
+        filmesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/usersIcon.png"))); // NOI18N
         filmesButton.setBorder(null);
         filmesButton.setBorderPainted(false);
         filmesButton.setContentAreaFilled(false);
         filmesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 334, -1, -1));
+        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 334, -1, -1));
+
+        logoMini1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/controleBox.png"))); // NOI18N
+        jPanel1.add(logoMini1, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 36, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,9 +90,9 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        Index index = new Index();
+        AdminHome admin = new AdminHome(user);
         
-        index.setVisible(true);
+        admin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
@@ -118,21 +110,27 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Users().setVisible(true);
             }
         });
     }
@@ -141,8 +139,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton filmesButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoMini;
+    private javax.swing.JLabel logoMini1;
     private javax.swing.JButton logoutButton;
-    private javax.swing.JLabel nomeLabel;
-    private javax.swing.JLabel olaLabel;
     // End of variables declaration//GEN-END:variables
 }

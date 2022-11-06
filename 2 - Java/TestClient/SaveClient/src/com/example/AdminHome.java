@@ -10,18 +10,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class Home extends javax.swing.JFrame {
-    
-    Usuario user;
+public class AdminHome extends javax.swing.JFrame {
 
-    public Home() {
+    public AdminHome() {
         initComponents();
 
     }
     
-    public Home(Usuario user){
+    public AdminHome(Usuario user){
         initComponents();
         
+        emailLabel.setText(user.getEmail());
         nomeLabel.setText(user.getNome());
     }
     
@@ -75,12 +74,12 @@ public class Home extends javax.swing.JFrame {
         nomeLabel.setText("NOME");
         jPanel1.add(nomeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 490, -1));
 
-        filmesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/FilmsIcon.png"))); // NOI18N
+        filmesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/usersIcon.png"))); // NOI18N
         filmesButton.setBorder(null);
         filmesButton.setBorderPainted(false);
         filmesButton.setContentAreaFilled(false);
         filmesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 334, -1, -1));
+        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 334, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,21 +117,23 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new AdminHome().setVisible(true);
             }
         });
     }

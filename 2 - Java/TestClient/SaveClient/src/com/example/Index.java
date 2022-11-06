@@ -1,13 +1,8 @@
 package com.example;
 
 import com.example.models.Usuario;
-import java.rmi.AccessException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Index extends javax.swing.JFrame {
@@ -21,6 +16,18 @@ public class Index extends javax.swing.JFrame {
     //Método para aparecer uma mensagem pop-up
     public void mensagemPopUp(String mensagem){
         JOptionPane.showMessageDialog(null, mensagem);
+    }
+    
+    //Método para exibir elementos da tela de login
+    public void telaLogin(){
+        
+        helpText.show();
+        loginBox.show();
+        loginField.show();
+        entrarButton.show();
+        cadastrarButton.show();
+        
+        apagar();
     }
     
     //Método para esconder Ações de Cadastro
@@ -109,7 +116,7 @@ public class Index extends javax.swing.JFrame {
         jPanel1.add(loginBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 394, -1, -1));
 
         nomeField.setFont(new java.awt.Font("JetBrains Mono", 1, 12)); // NOI18N
-        nomeField.setText("LOGIN");
+        nomeField.setText("NOME");
         nomeField.setBorder(null);
         jPanel1.add(nomeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 398, 270, 30));
 
@@ -136,7 +143,7 @@ public class Index extends javax.swing.JFrame {
                 cadastrarButtonMouseClicked(evt);
             }
         });
-        jPanel1.add(cadastrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 497, -1, -1));
+        jPanel1.add(cadastrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 497, -1, -1));
 
         voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/voltar.png"))); // NOI18N
         voltarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -191,13 +198,7 @@ public class Index extends javax.swing.JFrame {
     //Voltar para o Login
     private void voltarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarButtonMouseClicked
         
-        helpText.show();
-        loginBox.show();
-        loginField.show();
-        entrarButton.show();
-        cadastrarButton.show();
-        
-        apagar();
+        telaLogin();
     }//GEN-LAST:event_voltarButtonMouseClicked
     
     //Login no aplicativo Save
@@ -210,21 +211,30 @@ public class Index extends javax.swing.JFrame {
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
             Save stub = (Save) registry.lookup("Save");
-            
+
             Usuario user = new Usuario();
-            
-            user = stub.nomeUsuario(login);
+
+            user = stub.getUsuario(login);
 
             if (stub.login(login) == true) {
 
-                Home home = new Home(user.getNome(), user.getEmail());
+                if (user.getEmail().equals("root@admin.com")) {
 
-                home.setVisible(true);
-                this.dispose();
+                    AdminHome admin = new AdminHome(user);
+                    admin.setVisible(true);
+
+                    this.dispose();
+
+                } else {
+                    Home home = new Home(user);
+
+                    home.setVisible(true);
+                    this.dispose();
+                }
 
             } else {
                 mensagemPopUp("Login não encontrado ");
-                
+
                 System.out.println(stub.login(login));
             }
 
@@ -249,6 +259,7 @@ public class Index extends javax.swing.JFrame {
             if (stub.cadastrar(email, nome) == true) {
 
                 mensagemPopUp("Usuario " + nome + " cadastrado!");
+                telaLogin();
 
             } else {
                 mensagemPopUp("Email já cadastrado =(");
