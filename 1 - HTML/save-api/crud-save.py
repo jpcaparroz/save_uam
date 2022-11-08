@@ -98,7 +98,7 @@ def apiUsuario():
     banco.commit()
     banco.close()
 
-    return jsonify (result)
+    return jsonify (results)
 
 #API que retorna filmes que o usuario já assistiu
 @app.route('/api/filmeusuario', methods = ['GET',])

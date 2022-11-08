@@ -34,6 +34,7 @@ public class AdminHome extends javax.swing.JFrame {
         olaLabel = new javax.swing.JLabel();
         nomeLabel = new javax.swing.JLabel();
         usuariosButton = new javax.swing.JButton();
+        excluirButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -79,7 +80,19 @@ public class AdminHome extends javax.swing.JFrame {
                 usuariosButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(usuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 334, -1, -1));
+        jPanel1.add(usuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 331, -1, -1));
+
+        excluirButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/deleteIcon.png"))); // NOI18N
+        excluirButton.setBorder(null);
+        excluirButton.setBorderPainted(false);
+        excluirButton.setContentAreaFilled(false);
+        excluirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        excluirButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(excluirButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(636, 333, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,6 +123,13 @@ public class AdminHome extends javax.swing.JFrame {
         
         this.dispose();
     }//GEN-LAST:event_usuariosButtonActionPerformed
+
+    private void excluirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirButtonActionPerformed
+        Excluir ex = new Excluir(user);
+        
+        ex.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_excluirButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -147,6 +167,7 @@ public class AdminHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton excluirButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoMini;
     private javax.swing.JButton logoutButton;

@@ -24,7 +24,7 @@ public class SaveImpl implements Save {
 
         try {
 
-            Connection connection = DriverManager.getConnection(bd);
+            Connection connection = Conexao.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, email);
@@ -34,7 +34,6 @@ public class SaveImpl implements Save {
             System.out.println("Usuario Cadastrado com Sucesso!!!");
             System.out.println("Nome: " + nome + " | com email: " + email);
 
-            connection.close();
             return true;
 
         } catch (SQLException e) {
@@ -54,14 +53,13 @@ public class SaveImpl implements Save {
 
         try {
 
-            Connection connection = DriverManager.getConnection(bd);
+            Connection connection = Conexao.getConnection();
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, login);
 
             ResultSet result = statement.executeQuery();
 
-            connection.close();
             return result.next() == true;
 
         } catch (SQLException e) {
@@ -81,7 +79,7 @@ public class SaveImpl implements Save {
 
         try {
 
-            Connection connection = DriverManager.getConnection(bd);
+            Connection connection = Conexao.getConnection();
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, login);
@@ -124,7 +122,7 @@ public class SaveImpl implements Save {
 
         try {
 
-            Connection connection = DriverManager.getConnection(bd);
+            Connection connection = Conexao.getConnection();
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, email);
@@ -147,7 +145,6 @@ public class SaveImpl implements Save {
 
             System.out.println("[USER] email: " + email + " acessou sua coleção de filmes");
 
-            connection.close();
             return filmes;
 
         } catch (SQLException e) {
@@ -164,7 +161,7 @@ public class SaveImpl implements Save {
 
         try {
 
-            Connection connection = DriverManager.getConnection(bd);
+            Connection connection = Conexao.getConnection();
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -182,7 +179,6 @@ public class SaveImpl implements Save {
             }
 
             System.out.println("[ADMIN] Admin acessou a tabela dos Usuarios");
-            connection.close();
             return usuarios;
 
         } catch (SQLException e) {
@@ -190,5 +186,30 @@ public class SaveImpl implements Save {
             return null;
 
         }
+    }
+
+    public boolean excluirUsuario(String email) throws RemoteException {
+
+        String sql = "DELETE FROM usuario WHERE email=?";
+
+        try {
+
+            Connection connection = Conexao.getConnection();
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+
+            ResultSet result = statement.executeQuery();
+
+            return result.next() == true;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+            System.out.println("[ADMIN] Usuário " + email + " excluido com sucesso! ");
+            
+            return false;
+        }
+
     }
 }
