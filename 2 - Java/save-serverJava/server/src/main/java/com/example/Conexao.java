@@ -9,8 +9,7 @@ public class Conexao {
 	private static Connection con = null;
 
 	static {
-		String bd = "jdbc:sqlite:D:/Eu/Pessoal/Faculdade/save_uam/1 - HTML/save-api/save-bd.db";
-
+		String bd = "jdbc:sqlite:C:/Users/Joao/Desktop/Save/1 - HTML/save-api/save-bd.db";
 		try {
 			con = (Connection) DriverManager.getConnection(bd);
 			

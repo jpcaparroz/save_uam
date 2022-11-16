@@ -80,7 +80,7 @@ public class AdminHome extends javax.swing.JFrame {
                 usuariosButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(usuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 331, -1, -1));
+        jPanel1.add(usuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 331, -1, -1));
 
         excluirButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/deleteIcon.png"))); // NOI18N
         excluirButton.setBorder(null);
@@ -92,7 +92,7 @@ public class AdminHome extends javax.swing.JFrame {
                 excluirButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(excluirButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(636, 333, -1, -1));
+        jPanel1.add(excluirButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 333, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

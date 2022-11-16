@@ -19,15 +19,10 @@ public class Cliente {
             
             List<FilmeUsuario> lista = new ArrayList<>();
             
-            List<Usuario> lista1 = new ArrayList<>();
-            
-            lista = stub.getFilmeUsuario("teste@gmail.com");
-            
-            lista1 = stub.getUsuarios();
-            
-            //System.out.println(lista1.get(2).getNome());
-            
-            //System.out.println(lista.get(0).getNomeFilme());
+            lista = stub.getFilme();
+
+            System.out.println(lista.size());
+
             
         } catch (Exception e) {
             System.out.println(e);

@@ -35,6 +35,7 @@ public class Home extends javax.swing.JFrame {
         olaLabel = new javax.swing.JLabel();
         nomeLabel = new javax.swing.JLabel();
         filmesButton = new javax.swing.JButton();
+        explorarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -80,7 +81,19 @@ public class Home extends javax.swing.JFrame {
                 filmesButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 334, -1, -1));
+        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 357, -1, -1));
+
+        explorarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mundoIcon.png"))); // NOI18N
+        explorarButton.setBorder(null);
+        explorarButton.setBorderPainted(false);
+        explorarButton.setContentAreaFilled(false);
+        explorarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        explorarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                explorarButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(explorarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(584, 372, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +124,14 @@ public class Home extends javax.swing.JFrame {
         filmes.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_filmesButtonActionPerformed
+
+    private void explorarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_explorarButtonActionPerformed
+        
+        Explorar exp = new Explorar(user);
+        
+        exp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_explorarButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -146,6 +167,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton explorarButton;
     private javax.swing.JButton filmesButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoMini;

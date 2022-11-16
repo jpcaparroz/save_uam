@@ -15,8 +15,6 @@ import com.example.models.Usuario;
 
 public class SaveImpl implements Save {
 
-    String bd = "jdbc:sqlite:D:/Eu/Pessoal/Faculdade/save_uam/1 - HTML/save-api/save-bd.db";
-
     // Método para cadastrar usuario
     public boolean cadastrar(String email, String nome) throws RemoteException {
 
@@ -154,6 +152,45 @@ public class SaveImpl implements Save {
         }
     }
 
+    // Método para retornar todos os filmes já salvos no Save
+    public List<FilmeUsuario> getFilme() throws RemoteException {
+
+        String sql = "SELECT * FROM filmeusuario";
+
+        try {
+
+            Connection connection = Conexao.getConnection();
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            ResultSet result = statement.executeQuery();
+
+            List<FilmeUsuario> filmes = new ArrayList<>();
+
+            while (result.next()) {
+                FilmeUsuario filmeUsuario = new FilmeUsuario();
+
+                filmeUsuario.setEmailUsuario(result.getString(1));
+                filmeUsuario.setNomeFilme(result.getString(2));
+                filmeUsuario.setAnoFilme(result.getInt(3));
+                filmeUsuario.setPosterFilme(result.getString(4));
+                filmeUsuario.setNotaFilme(result.getInt(5));
+
+                filmes.add(filmeUsuario);
+            }
+
+            System.out.println("[USER] Usuário solicitou coleção de filmes Save");
+
+            return filmes;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+
+        }
+
+    }
+
     // Método para retornar todos usuarios
     public List<Usuario> getUsuarios() throws RemoteException {
 
@@ -199,17 +236,79 @@ public class SaveImpl implements Save {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, email);
 
-            ResultSet result = statement.executeQuery();
+            if(email.equals("root@admin.com")) {
+                System.out.println("[ADMIN] Tentou excluir o usuario ADMIN ");
+                return false;
 
-            return result.next() == true;
+            } else {
+
+                int rowsDeleted = statement.executeUpdate();
+
+                excluirFilme(email);
+                System.out.println("[ADMIN] Usuário " + email + " excluido com sucesso! ");
+                return rowsDeleted < 0;
+            }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
 
-            System.out.println("[ADMIN] Usuário " + email + " excluido com sucesso! ");
-            
             return false;
         }
 
+    }
+
+    public boolean excluirFilme(String email) throws RemoteException {
+
+        String sql = "DELETE FROM filmeusuario WHERE emailUsuario=?";
+
+        try {
+
+            Connection connection = Conexao.getConnection();
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+
+            int rowsDeleted = statement.executeUpdate();
+
+            System.out.println("[ADMIN] Filmes do usuario " + email + " excluidos com sucesso! ");
+            
+            return rowsDeleted < 0;
+
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());            
+            return false;
+        }
+
+    }
+
+    public boolean adicionarFilme(FilmeUsuario filme, String email) throws RemoteException {
+
+        String sql = "INSERT into filmeusuario(emailUsuario,nomeFilme, anoFilme, posterFilme, notaFilme) VALUES (?,?,?,?,?)";
+
+        try {
+
+            Connection connection = Conexao.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setString(1, email);
+            statement.setString(2, filme.getNomeFilme());
+            statement.setInt(3, Integer.valueOf(filme.getAnoFilme()));
+            statement.setString(4, filme.getPosterFilme());
+            statement.setInt(5, Integer.valueOf(filme.getNotaFilme()));
+            statement.executeUpdate();
+
+            System.out.println("[USER] Filme Save");
+            System.out.println("Usuario: " + email + " | Adicionou o filme " + filme.getNomeFilme() + " em seu Save!");
+
+            return true;
+
+        } catch (SQLException e) {
+            
+            System.out.println(e.getMessage());
+
+            
+            return false;
+        }
     }
 }

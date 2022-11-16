@@ -40,8 +40,6 @@ public class Excluir extends javax.swing.JFrame {
                        
             usuarios = stub.getUsuarios();
             
-            System.out.println(usuarios.get(0).getEmail());
-            
             for (Usuario listaUser : usuarios) {
                 String tabelaUsuarios[] = {listaUser.getEmail(), listaUser.getNome()};
                 defaultUsuarios.addRow(tabelaUsuarios);
@@ -88,7 +86,7 @@ public class Excluir extends javax.swing.JFrame {
         jScrollPane1.setFont(new java.awt.Font("JetBrains Mono", 1, 12)); // NOI18N
 
         usuariosTable.setBackground(new java.awt.Color(255, 255, 255));
-        usuariosTable.setFont(new java.awt.Font("JetBrains Mono", 1, 12)); // NOI18N
+        usuariosTable.setFont(new java.awt.Font("JetBrains Mono", 1, 14)); // NOI18N
         usuariosTable.setForeground(new java.awt.Color(0, 0, 0));
         usuariosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,9 +106,12 @@ public class Excluir extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        usuariosTable.setGridColor(new java.awt.Color(0, 0, 0));
+        usuariosTable.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        usuariosTable.getTableHeader().setResizingAllowed(false);
         jScrollPane1.setViewportView(usuariosTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 132, 830, 270));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 132, 833, 267));
 
         logoMini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/saveLogoMini.png"))); // NOI18N
         jPanel1.add(logoMini, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -177,6 +178,17 @@ public class Excluir extends javax.swing.JFrame {
 
             Save stub = (Save) registry.lookup("Save");
             
+            if (stub.excluirUsuario(excluir)) {
+                
+                mensagemPopUp("Erro ao exlcuir o usuario...");
+                
+            } else {  
+                
+                listarUsuarios();
+                mensagemPopUp("Usuario " + excluir + " excluido com sucesso!");
+                
+            }
+            
             if(excluir.isBlank() || excluir.isEmpty()) {
                 mensagemPopUp("Usuário inválido");
             } else {
@@ -186,10 +198,6 @@ public class Excluir extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e);
         }
-        
-        
-        
-        
     }//GEN-LAST:event_excluirButtonActionPerformed
 
     public static void main(String args[]) {

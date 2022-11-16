@@ -12,7 +12,13 @@ notaFilme integer,
 CONSTRAINT fk_usuario FOREIGN KEY (emailUsuario) REFERENCES Usuario(email)
 );
 
--- INSERT INTO usuario(email, nome) VALUES ("teste@gmail.com", "Joao Pedro");
+-- INSERT INTO usuario(email, nome) VALUES ("t2@admin.com", "admin");
+
+-- INSERT INTO usuario(email, nome) VALUES ("t1@admin.com", "admin");
+
+-- INSERT INTO usuario(email, nome) VALUES ("t3@admin.com", "admin");
+
+-- INSERT INTO usuario(email, nome) VALUES ("t4@admin.com", "admin");
 
 -- INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
 -- VALUES ("teste@123.com","Capitã Marvel",2017, "https://img.elo7.com.br/product/original/23646C7/big-poster-filme-capita-marvel-tamanho-90x60-cm-presente-geek.jpg", 3);

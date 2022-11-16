@@ -15,9 +15,15 @@ public interface Save extends Remote {
 
     public Usuario getUsuario(String login) throws RemoteException;
 
-    public List<FilmeUsuario> getFilmeUsuario (String email) throws RemoteException;
+    public List<FilmeUsuario> getFilmeUsuario(String email) throws RemoteException;
+
+    public List<FilmeUsuario> getFilme() throws RemoteException;
  
-    public List<Usuario> getUsuarios () throws RemoteException;
+    public List<Usuario> getUsuarios() throws RemoteException;
 
     public boolean excluirUsuario(String email) throws RemoteException;
+
+    public boolean excluirFilme(String email) throws RemoteException;
+
+    public boolean adicionarFilme(FilmeUsuario filme, String email) throws RemoteException;
 }

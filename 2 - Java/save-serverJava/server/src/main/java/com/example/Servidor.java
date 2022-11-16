@@ -18,7 +18,7 @@ public class Servidor extends SaveImpl {
             
         } catch (Exception e) {
             
-            System.out.println( "vixi: " + e.getMessage());
+            System.out.println( "[ERRO] Falha ao iniciar o Servidor: " + e.getMessage());
             
         }
     }

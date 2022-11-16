@@ -19,7 +19,6 @@ public class Index extends javax.swing.JFrame {
     
     //Método para exibir elementos da tela de login
     public void telaLogin(){
-        
         helpText.show();
         loginBox.show();
         loginField.show();
@@ -170,7 +169,6 @@ public class Index extends javax.swing.JFrame {
     
     //Ir para a tela de Cadastro do Save
     private void cadastrarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarButtonMouseClicked
-        
         nomeBox.show();
         nomeBox.enable();
         
