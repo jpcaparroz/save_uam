@@ -33,6 +33,7 @@ public class Explorar extends javax.swing.JFrame {
         initComponents();
         
         listarFilmes();
+        filmePoster();
         this.user = user;
     }
     

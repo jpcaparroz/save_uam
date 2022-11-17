@@ -132,11 +132,12 @@ public class SaveImpl implements Save {
             while (result.next()) {
                 FilmeUsuario filmeUsuario = new FilmeUsuario();
 
-                filmeUsuario.setEmailUsuario(result.getString(1));
-                filmeUsuario.setNomeFilme(result.getString(2));
-                filmeUsuario.setAnoFilme(result.getInt(3));
-                filmeUsuario.setPosterFilme(result.getString(4));
-                filmeUsuario.setNotaFilme(result.getInt(5));
+                filmeUsuario.setId(result.getInt(1));
+                filmeUsuario.setEmailUsuario(result.getString(2));
+                filmeUsuario.setNomeFilme(result.getString(3));
+                filmeUsuario.setAnoFilme(result.getInt(4));
+                filmeUsuario.setPosterFilme(result.getString(5));
+                filmeUsuario.setNotaFilme(result.getInt(6));
 
                 filmes.add(filmeUsuario);
             }
@@ -170,11 +171,12 @@ public class SaveImpl implements Save {
             while (result.next()) {
                 FilmeUsuario filmeUsuario = new FilmeUsuario();
 
-                filmeUsuario.setEmailUsuario(result.getString(1));
-                filmeUsuario.setNomeFilme(result.getString(2));
-                filmeUsuario.setAnoFilme(result.getInt(3));
-                filmeUsuario.setPosterFilme(result.getString(4));
-                filmeUsuario.setNotaFilme(result.getInt(5));
+                filmeUsuario.setId(result.getInt(1));
+                filmeUsuario.setEmailUsuario(result.getString(2));
+                filmeUsuario.setNomeFilme(result.getString(3));
+                filmeUsuario.setAnoFilme(result.getInt(4));
+                filmeUsuario.setPosterFilme(result.getString(5));
+                filmeUsuario.setNotaFilme(result.getInt(6));
 
                 filmes.add(filmeUsuario);
             }

@@ -3,13 +3,21 @@ package com.example.models;
 import java.io.Serializable;
 
 public class FilmeUsuario implements Serializable{
-
+    
+    private int id;
     private String emailUsuario;
     private String nomeFilme;
     private int anoFilme;
     private String posterFilme;
     private int notaFilme;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getEmailUsuario() {
         return emailUsuario;
     }

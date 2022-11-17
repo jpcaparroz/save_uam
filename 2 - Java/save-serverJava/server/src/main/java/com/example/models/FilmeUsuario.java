@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class FilmeUsuario implements Serializable{
 
+    private int id;
     private String emailUsuario;
     private String nomeFilme;
     private int anoFilme;
@@ -39,6 +40,12 @@ public class FilmeUsuario implements Serializable{
     }
     public void setNotaFilme(int notaFilme) {
         this.notaFilme = notaFilme;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
   
 }

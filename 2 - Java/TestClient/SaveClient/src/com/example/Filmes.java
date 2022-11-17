@@ -403,6 +403,7 @@ public class Filmes extends javax.swing.JFrame {
             mensagemPopUp("Não possue mais filme");
         } else {
             count--;
+            exibirFilme();
             filmePoster();
         }
     }//GEN-LAST:event_esqButtonActionPerformed
@@ -413,6 +414,7 @@ public class Filmes extends javax.swing.JFrame {
             mensagemPopUp("Não possue mais filme");
         } else {
             count++;
+            exibirFilme();
             filmePoster();
         }
     }//GEN-LAST:event_dirButtonActionPerformed
