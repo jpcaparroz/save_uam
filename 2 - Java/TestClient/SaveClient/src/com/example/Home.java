@@ -15,7 +15,7 @@ public class Home extends javax.swing.JFrame {
     public Home(Usuario user){
         initComponents();
         
-        nomeLabel.setText(user.getNome());
+        nomeLabel.setText("olá, " + user.getNome());
         
         this.user = user;
     }
@@ -32,7 +32,6 @@ public class Home extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoMini = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
-        olaLabel = new javax.swing.JLabel();
         nomeLabel = new javax.swing.JLabel();
         filmesButton = new javax.swing.JButton();
         explorarButton = new javax.swing.JButton();
@@ -61,15 +60,11 @@ public class Home extends javax.swing.JFrame {
         });
         jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(986, 10, -1, -1));
 
-        olaLabel.setFont(new java.awt.Font("Sansita", 1, 32)); // NOI18N
-        olaLabel.setForeground(new java.awt.Color(0, 0, 0));
-        olaLabel.setText("olá,");
-        jPanel1.add(olaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 143, -1, -1));
-
         nomeLabel.setFont(new java.awt.Font("Sansita One", 1, 48)); // NOI18N
         nomeLabel.setForeground(new java.awt.Color(0, 0, 0));
+        nomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nomeLabel.setText("NOME");
-        jPanel1.add(nomeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 490, -1));
+        jPanel1.add(nomeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 1024, -1));
 
         filmesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/FilmsIcon.png"))); // NOI18N
         filmesButton.setBorder(null);
@@ -173,6 +168,5 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel logoMini;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel nomeLabel;
-    private javax.swing.JLabel olaLabel;
     // End of variables declaration//GEN-END:variables
 }

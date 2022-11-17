@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -18,6 +20,9 @@ public class Adicionar extends javax.swing.JFrame {
     
     Usuario user;
     FilmeUsuario filme;
+    boolean achou = false;
+    
+    List<FilmeUsuario> lista = new ArrayList<>();
 
     public Adicionar() {
         initComponents();
@@ -32,6 +37,7 @@ public class Adicionar extends javax.swing.JFrame {
         
         nomeFilme.setText(filme.getNomeFilme());
         anoFilme.setText(String.valueOf(filme.getAnoFilme()));
+        filmePoster();
     }
 
     // Método para exibir filmes
@@ -182,8 +188,25 @@ public class Adicionar extends javax.swing.JFrame {
             Save stub = (Save) registry.lookup("Save");
             
             filme.setNotaFilme(notaSlider.getValue());
-
-            stub.adicionarFilme(filme, user.getEmail());
+            
+            lista = stub.getFilmeUsuario(user.getEmail());
+            
+            for (FilmeUsuario filmeUsuario : lista) {
+                if (filmeUsuario.getNomeFilme().equals(filmeUsuario.getNomeFilme())) {
+                    achou = true;
+                };
+            }
+            
+            if (stub.adicionarFilme(filme, user.getEmail()) && achou) {
+                
+                mensagemPopUp("Filme " + filme.getNomeFilme() + " adicionado com sucesso!");
+                this.dispose();
+                
+            } else {
+                
+                mensagemPopUp("Erro ao adicionar filme...");
+                this.dispose();
+            } 
 
         } catch (Exception e) {
             System.out.println(e);

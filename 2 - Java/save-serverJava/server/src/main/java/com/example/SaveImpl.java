@@ -248,6 +248,8 @@ public class SaveImpl implements Save {
 
                 excluirFilme(email);
                 System.out.println("[ADMIN] Usuário " + email + " excluido com sucesso! ");
+                System.out.println("[ADMIN] Filmes do usuario " + email + " excluidos com sucesso! ");
+            
                 return rowsDeleted < 0;
             }
 
@@ -272,8 +274,6 @@ public class SaveImpl implements Save {
 
             int rowsDeleted = statement.executeUpdate();
 
-            System.out.println("[ADMIN] Filmes do usuario " + email + " excluidos com sucesso! ");
-            
             return rowsDeleted < 0;
 
         } catch (SQLException e) {
@@ -311,6 +311,45 @@ public class SaveImpl implements Save {
 
             
             return false;
+        }
+    }
+
+    public List<FilmeUsuario> getNomeFilme(String email){
+        
+        String sql = "SELECT * FROM filmeusuario WHERE emailUsuario=?";
+
+        try {
+
+            Connection connection = Conexao.getConnection();
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+
+            ResultSet result = statement.executeQuery();
+
+            List<FilmeUsuario> filmes = new ArrayList<>();
+
+            while (result.next()) {
+                FilmeUsuario filmeUsuario = new FilmeUsuario();
+
+                filmeUsuario.setId(result.getInt(1));
+                filmeUsuario.setEmailUsuario(result.getString(2));
+                filmeUsuario.setNomeFilme(result.getString(3));
+                filmeUsuario.setAnoFilme(result.getInt(4));
+                filmeUsuario.setPosterFilme(result.getString(5));
+                filmeUsuario.setNotaFilme(result.getInt(6));
+
+                filmes.add(filmeUsuario);
+            }
+
+            System.out.println("[USER] Usuário solicitou coleção de filmes Save");
+
+            return filmes;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+
         }
     }
 }
