@@ -62,12 +62,49 @@ def perfil():
 def filmes():
     return render_template('filmes.html')
 
-@app.route('/pesquisar')
+@app.route('/setFilmes', methods = ['POST'])
+def setFilmes():
+    pesquisar()
+    return render_template('filmes.html')
+
+@app.route('/pesquisar', methods = ['GET', 'POST'])
 def pesquisar():
+
+    if request.method == 'POST':
+        email = request.form['email']
+        nome = request.form['nomeFilme']
+        ano = request.form['anoFilme']
+        poster = request.form['posterFilme']
+        nota = request.form['notaFilme']
+
+        banco = carregaBanco()
+        cur = banco.cursor()
+
+        cur.execute('INSERT into filmeusuario (emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) VALUES (?,?,?,?,?)', (email, nome, ano, poster, nota))
+
+        banco.commit()
+        banco.close()
+
     return render_template('pesquisar.html')
 
-@app.route('/recomendacoes')
+@app.route('/recomendacoes', methods = ['GET', 'POST'])
 def recomendacoes():
+
+    if request.method == 'POST':
+        email = request.form['email']
+        nome = request.form['nomeFilme']
+        ano = request.form['anoFilme']
+        poster = request.form['posterFilme']
+        nota = request.form['notaFilme']
+
+        banco = carregaBanco()
+        cur = banco.cursor()
+
+        cur.execute('INSERT into filmeusuario (emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) VALUES (?,?,?,?,?)', (email, nome, ano, poster, nota))
+
+        banco.commit()
+        banco.close()
+
     return render_template('recomendacoes.html')
 ########################################################################################################
 ##############                            API                                             ##############
