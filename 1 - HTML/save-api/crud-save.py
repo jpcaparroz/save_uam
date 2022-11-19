@@ -134,10 +134,25 @@ def apiTop250():
     with open('250.json', 'r') as data:
         top250 = json.load(data)
 
+    colums = ['title', 'year', 'image']
     results = []
 
-    for films in top250['items']:
+    i = 0
+    limit = 100
 
-        results.append(films).__getattribute__
+    for film in top250['items']:
+
+        title = film['title']
+        year = film['year']
+        image = film['image']
+
+        film = [title, year, image]
+
+        film = dict(zip(colums,film))
+        results.append(film)
+        i+= 1
+
+        if i == limit:
+            break
 
     return jsonify(results)
