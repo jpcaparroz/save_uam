@@ -30,27 +30,19 @@ def index():
     criarTabela()
     return "<h1>Tabelas Criadas :)</h1>"
 
-@app.route('/addUser', methods = ['POST',])
-def addUsuario():
-    banco = carregaBanco()
-    cur = banco.cursor()
-
-    email = request.form["email"]
-    nome = request.form["nome"]
-    
-    cur.execute("""
-    INSERT INTO Usuario (email, nome)
-    VALUES (?,?)""",
-    (email, nome))
-    
-    banco.commit()
-    banco.close()
-
-    return ("Nome: %s, Email: %s" % (email, nome))
-
-@app.route('/registrar', methods = ['GET',])
+@app.route('/registrar', methods = ['GET', 'POST'])
 def registrar():
-    
+    if request.method == 'POST' and 'email' in request.form and 'nome' in request.form:
+        email = request.form['email']
+        nome = request.form['nome']
+
+        banco = carregaBanco()
+        cur = banco.cursor()
+
+        cur.execute('INSERT INTO Usuario (email, nome) VALUES (?,?)',(email, nome))
+
+        banco.commit()
+        banco.close()
 
     return render_template('registrar.html')
 

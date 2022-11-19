@@ -71,8 +71,9 @@ function validateName(name) {
         AlertSucess.open()
         setInterval(() => {
             form.submit()
-            window.location.href = '/addUser'
-            window.location.href = '/'
+            setInterval(() => {
+                window.location.href = '/'
+            }, 1000)
         }, 2000)
     }
 }
