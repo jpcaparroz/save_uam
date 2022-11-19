@@ -85,6 +85,8 @@ public class Index extends javax.swing.JFrame {
         entrarButton.setContentAreaFilled(false);
         entrarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         entrarButton.setFocusPainted(false);
+        entrarButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/image/entrarPressed.png"))); // NOI18N
+        entrarButton.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/entrarPressed.png"))); // NOI18N
         entrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 entrarButtonActionPerformed(evt);
@@ -98,6 +100,8 @@ public class Index extends javax.swing.JFrame {
         cadastrar.setContentAreaFilled(false);
         cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cadastrar.setFocusPainted(false);
+        cadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cadastrarPressed.png"))); // NOI18N
+        cadastrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cadastrarPressed.png"))); // NOI18N
         cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarActionPerformed(evt);
@@ -268,10 +272,6 @@ public class Index extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cadastrarActionPerformed
 
-    /**
-     *
-     * @param args
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

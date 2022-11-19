@@ -13,6 +13,12 @@ notaFilme integer,
 CONSTRAINT fk_usuario FOREIGN KEY (emailUsuario) REFERENCES Usuario(email)
 );
 
+-- INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
+-- VALUES ("teste@123.com","Vingadores",2019, "https://www.showmetech.com.br/wp-content/uploads/2018/03/um-poster-de-filme-16102826189046.jpg", 4)
+
+-- INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
+-- VALUES ("teste@123.com","Projeto: Gemini",2011, "https://br.web.img3.acsta.net/pictures/19/04/23/16/26/2808586.jpg", 2)
+
 -- INSERT INTO usuario(email, nome) VALUES ("root@admin.com", "admin");
 
 -- INSERT INTO usuario(email, nome) VALUES ("t2@admin.com", "admin");
@@ -27,12 +33,3 @@ CONSTRAINT fk_usuario FOREIGN KEY (emailUsuario) REFERENCES Usuario(email)
 
 -- INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
 -- VALUES ("teste@123.com","Capita Marvel",2017, "https://img.elo7.com.br/product/original/23646C7/big-poster-filme-capita-marvel-tamanho-90x60-cm-presente-geek.jpg", 3);
-
-INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
-VALUES ("t4@admin.com","Vingadores",2019, "https://static.wikia.nocookie.net/marvel/images/8/8e/Os_Vingadores_%28filme%29_cartaz_011.jpg/revision/latest?cb=20180205230054&path-prefix=pt-br", 2);
-
--- INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
--- VALUES ("teste@gmail.com","afddfs",2017, "image", 4);
-
--- INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
--- VALUES ("teste@gmail.com","testtttts",2017, "image", 4);

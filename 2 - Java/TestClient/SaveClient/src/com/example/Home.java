@@ -71,6 +71,7 @@ public class Home extends javax.swing.JFrame {
         filmesButton.setBorderPainted(false);
         filmesButton.setContentAreaFilled(false);
         filmesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        filmesButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/image/FilmsIconPressed.png"))); // NOI18N
         filmesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filmesButtonActionPerformed(evt);
@@ -83,6 +84,7 @@ public class Home extends javax.swing.JFrame {
         explorarButton.setBorderPainted(false);
         explorarButton.setContentAreaFilled(false);
         explorarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        explorarButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mundoIconPressed.png"))); // NOI18N
         explorarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 explorarButtonActionPerformed(evt);

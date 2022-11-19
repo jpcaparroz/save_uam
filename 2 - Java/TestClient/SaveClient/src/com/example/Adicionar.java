@@ -91,6 +91,7 @@ public class Adicionar extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        voltarButton = new javax.swing.JButton();
         logoMini = new javax.swing.JLabel();
         anoFilme = new javax.swing.JLabel();
         nomeFilme = new javax.swing.JLabel();
@@ -108,6 +109,18 @@ public class Adicionar extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1024, 768));
         jPanel1.setMinimumSize(new java.awt.Dimension(1024, 768));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/voltar2.png"))); // NOI18N
+        voltarButton.setBorder(null);
+        voltarButton.setBorderPainted(false);
+        voltarButton.setContentAreaFilled(false);
+        voltarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        voltarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 50, -1));
 
         logoMini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/saveLogoMini.png"))); // NOI18N
         jPanel1.add(logoMini, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 9, -1, -1));
@@ -192,27 +205,32 @@ public class Adicionar extends javax.swing.JFrame {
             lista = stub.getFilmeUsuario(user.getEmail());
 
             for (FilmeUsuario filmeUsuario : lista) {
-                if (filmeUsuario.getNomeFilme().equals(filmeUsuario.getNomeFilme())) {
+                if (filmeUsuario.getNomeFilme().equals(filme.getNomeFilme())) {
                     achou = true;
                 };
             }
 
             if (achou) {
-                stub.adicionarFilme(filme, user.getEmail());
-                mensagemPopUp("Filme " + filme.getNomeFilme() + " adicionado com sucesso!");
+                
+                mensagemPopUp("Erro ao adicionar filme. Você já possue em seu Save!!!");
                 this.dispose();
 
             } else {
                 
-                mensagemPopUp("Erro ao adicionar filme...");
+                stub.adicionarFilme(filme, user.getEmail());
+                mensagemPopUp("Filme " + filme.getNomeFilme() + " adicionado com sucesso!");
                 this.dispose();
-                
+
             }
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_likeButtonActionPerformed
+
+    private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_voltarButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -263,5 +281,6 @@ public class Adicionar extends javax.swing.JFrame {
     private javax.swing.JLabel logoMini;
     private javax.swing.JLabel nomeFilme;
     private javax.swing.JSlider notaSlider;
+    private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -71,6 +71,7 @@ public class AdminHome extends javax.swing.JFrame {
         usuariosButton.setBorderPainted(false);
         usuariosButton.setContentAreaFilled(false);
         usuariosButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        usuariosButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/image/usersIconPressed.png"))); // NOI18N
         usuariosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuariosButtonActionPerformed(evt);
@@ -83,6 +84,7 @@ public class AdminHome extends javax.swing.JFrame {
         excluirButton.setBorderPainted(false);
         excluirButton.setContentAreaFilled(false);
         excluirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        excluirButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/image/deleteIconPressed.png"))); // NOI18N
         excluirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 excluirButtonActionPerformed(evt);

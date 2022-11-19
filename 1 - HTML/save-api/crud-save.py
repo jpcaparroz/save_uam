@@ -1,3 +1,4 @@
+import json
 import sqlite3
 
 from flask import Flask, request, render_template
@@ -129,7 +130,14 @@ def apiFilmeUsuario():
 
 @app.route('/api/top250', methods = ['GET',])
 def apiTop250():
-    
-    path = "/api_250.json"
 
-    return render_template (path)
+    with open('250.json', 'r') as data:
+        top250 = json.load(data)
+
+    results = []
+
+    for films in top250['items']:
+
+        results.append(films).__getattribute__
+
+    return jsonify(results)
