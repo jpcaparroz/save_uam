@@ -77,6 +77,10 @@ def filmesUsuario():
 
     return render_template ("test.html", result = result)
 
+########################################################################################################
+##############                            API                                             ##############
+########################################################################################################
+
 #API que retorna usuarios do banco 
 @app.route('/api/usuario', methods = ['GET',])
 def apiUsuario():
@@ -122,3 +126,10 @@ def apiFilmeUsuario():
     banco.close()
 
     return jsonify (results)
+
+@app.route('/api/top250', methods = ['GET',])
+def apiTop250():
+    
+    path = "/api_250.json"
+
+    return render_template (path)
