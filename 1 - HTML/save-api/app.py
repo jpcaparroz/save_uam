@@ -71,7 +71,7 @@ def setFilmes():
 def pesquisar():
 
     if request.method == 'POST':
-        email = request.form['email']
+        email = request.form['emailUsuario']
         nome = request.form['nomeFilme']
         ano = request.form['anoFilme']
         poster = request.form['posterFilme']
@@ -91,7 +91,7 @@ def pesquisar():
 def recomendacoes():
 
     if request.method == 'POST':
-        email = request.form['email']
+        email = request.form['emailUsuario']
         nome = request.form['nomeFilme']
         ano = request.form['anoFilme']
         poster = request.form['posterFilme']

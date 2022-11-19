@@ -4,9 +4,11 @@ const recommendPage = {
     apiKey: '8cdb9794',
     imdbApi(apiKey, userSearch) {
         return `https://www.omdbapi.com/?apikey=${apiKey}&s=${userSearch}`
-    }
+    },
+    todosFilmes: [],
+    saveApiProfiles: `http://127.0.0.1:5000/api/filmeusuario`,
 }
-const {searchBar, saveApi, imdbApi, apiKey} = recommendPage
+const {searchBar, saveApi, imdbApi, apiKey, todosFilmes, saveApiProfiles} = recommendPage
 
 authLogin()
 
@@ -67,6 +69,7 @@ function removeLocalStorageData () {
 function authLogin() {
     const email = localStorage.getItem('email')
     connectSaveApi(saveApi, email)
+    connectSaveApiProfile(saveApiProfiles)
 }
 
 function connectImdbApi(url) {
@@ -86,11 +89,39 @@ function connectImdbApi(url) {
                 poster = 'https://t4.ftcdn.net/jpg/02/14/06/71/360_F_214067110_eB6LNUMWR8nSXSTEG1SSpJGfkS7c9zMd.jpg'
             }
 
-            createMoviesList(title, year, poster, email)
+            let index = todosFilmes.indexOf(title)
+
+            if(index === -1){
+                createMoviesList(title, year, poster, email)
+            }
+
             
         })
     })
     .catch(err => console.error(err))
+}
+
+function connectSaveApiProfile(url) {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        data.map((item) => {
+            const email = item.emailUsuario
+            const emailAtual = localStorage.getItem('email')
+
+            const titleProfile = item.nomeFilme
+
+            if(email === emailAtual) {
+                allMovies(titleProfile)
+            }
+
+        })
+    })
+    .catch(err => console.error(err))
+}
+
+function allMovies(title) {
+    return todosFilmes.push(title)
 }
 
 function createMoviesList(title, year, poster, email) {
