@@ -186,27 +186,28 @@ public class Adicionar extends javax.swing.JFrame {
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
             Save stub = (Save) registry.lookup("Save");
-            
+
             filme.setNotaFilme(notaSlider.getValue());
-            
+
             lista = stub.getFilmeUsuario(user.getEmail());
-            
+
             for (FilmeUsuario filmeUsuario : lista) {
                 if (filmeUsuario.getNomeFilme().equals(filmeUsuario.getNomeFilme())) {
                     achou = true;
                 };
             }
-            
-            if (stub.adicionarFilme(filme, user.getEmail()) && achou) {
-                
+
+            if (achou) {
+                stub.adicionarFilme(filme, user.getEmail());
                 mensagemPopUp("Filme " + filme.getNomeFilme() + " adicionado com sucesso!");
                 this.dispose();
-                
+
             } else {
                 
                 mensagemPopUp("Erro ao adicionar filme...");
                 this.dispose();
-            } 
+                
+            }
 
         } catch (Exception e) {
             System.out.println(e);

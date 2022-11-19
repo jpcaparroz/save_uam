@@ -28,8 +28,8 @@ CONSTRAINT fk_usuario FOREIGN KEY (emailUsuario) REFERENCES Usuario(email)
 -- INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
 -- VALUES ("teste@123.com","Capita Marvel",2017, "https://img.elo7.com.br/product/original/23646C7/big-poster-filme-capita-marvel-tamanho-90x60-cm-presente-geek.jpg", 3);
 
--- INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
--- VALUES ("t4@admin.com","Shrek",2007, "https://cdn-cosmos.bluesoft.com.br/products/4035519332737", 5);
+INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
+VALUES ("t4@admin.com","Vingadores",2019, "https://static.wikia.nocookie.net/marvel/images/8/8e/Os_Vingadores_%28filme%29_cartaz_011.jpg/revision/latest?cb=20180205230054&path-prefix=pt-br", 2);
 
 -- INSERT INTO filmeusuario(emailUsuario, nomeFilme, anoFilme, posterFilme, notaFilme) 
 -- VALUES ("teste@gmail.com","afddfs",2017, "image", 4);

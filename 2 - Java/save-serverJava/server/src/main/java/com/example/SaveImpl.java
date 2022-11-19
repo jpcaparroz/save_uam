@@ -300,7 +300,7 @@ public class SaveImpl implements Save {
             statement.setInt(5, Integer.valueOf(filme.getNotaFilme()));
             statement.executeUpdate();
 
-            System.out.println("[USER] Filme Save");
+            System.out.println("[USER] Filme Save =D");
             System.out.println("Usuario: " + email + " | Adicionou o filme " + filme.getNomeFilme() + " em seu Save!");
 
             return true;

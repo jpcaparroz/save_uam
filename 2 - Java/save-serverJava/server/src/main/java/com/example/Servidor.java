@@ -14,7 +14,7 @@ public class Servidor extends SaveImpl {
 
             Registry registry = LocateRegistry.createRegistry(18000);
             registry.rebind("Save", stub);
-            System.out.println("Server on =)");
+            System.out.println("[SERVER] Server SAVE online =)");
             
         } catch (Exception e) {
             
