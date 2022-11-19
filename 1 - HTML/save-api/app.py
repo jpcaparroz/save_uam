@@ -62,11 +62,6 @@ def perfil():
 def filmes():
     return render_template('filmes.html')
 
-@app.route('/setFilmes', methods = ['POST'])
-def setFilmes():
-    pesquisar()
-    return render_template('filmes.html')
-
 @app.route('/pesquisar', methods = ['GET', 'POST'])
 def pesquisar():
 
