@@ -1,0 +1,13 @@
+
+<ion-content [fullscreen]="true">
+<div class="center">
+  <ion-card>
+    <img src="assets/icon/logo.png">
+    <ion-item lines="none">
+      <ion-label position="floating">Login</ion-label>
+      <ion-input type="email"[(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-button (click)="login()" shape="round" fill="solid" color="dark">Entrar</ion-button>
+  </ion-card>
+</div>
+</ion-content>
