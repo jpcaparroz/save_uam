@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
         this.presentToast('Usuario não encontrado!', 'danger');
       });
     } else {
-      this.presentToast('Erro ao logar!', 'danger');
+      this.presentToast('Verifique os dados de login!', 'danger');
     }
   }
 
