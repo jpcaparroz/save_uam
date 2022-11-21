@@ -73,7 +73,7 @@ function validateName(name) {
             form.submit()
             setInterval(() => {
                 window.location.href = '/'
-            }, 1000)
+            }, 10)
         }, 2000)
     }
 }
