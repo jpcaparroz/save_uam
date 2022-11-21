@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      {{titulo}}
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <ion-searchbar (ionChange)="searchFilmes($event)" placeholder="Buscar"></ion-searchbar>
+
+  <ion-list *ngIf="listaFilmes">
+    <ion-title>
+      {{this.email}}
+    </ion-title>
+    <ion-item lines="none" *ngIf="listaFilmes.length == 0">
+      <ion-label class="ion-text-center">
+        Não há filmes para exibir...
+      </ion-label>
+    </ion-item>
+
+    <ion-item-sliding *ngFor="let filme of listaFilmes">
+      <ion-item lines="full" (click)="exibirFilme(filme)">
+        <ion-thumbnail slot="start">
+
+          <img *ngIf="filme.posterFilme"
+            src="{{filme.posterFilme}}"/>
+            <ion-icon *ngIf="!filme.posterFilme" name="videocam-off"></ion-icon>
+
+        </ion-thumbnail>
+
+        <ion-label class="ion-text-wrap">
+          <div>
+            <h1>{{filme.nomeFilme}}</h1>
+            <p>{{filme.anoFilme | date:'shortDate'}}</p>
+          </div>
+        </ion-label>
+
+        <ion-chip [color]="filme.notaFilme < 5 ? 'danger' : ((filme.notaFilme < 7) ? 'warning' : 'success') " outline>
+         <ion-label>{{filme.notaFilme}}</ion-label>
+        </ion-chip>
+      </ion-item>
+
+    </ion-item-sliding>
+  </ion-list>
+  
+</ion-content>

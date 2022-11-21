@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Dados do Filme</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-card *ngIf="filme">
+  <ion-card-header>
+    <img *ngIf="filme.posterFilme"
+    src="{{filme.posterFilme}}"/>
+    <ion-icon *ngIf="!filme.posterFilme" name="videocam-off"></ion-icon>
+  </ion-card-header>
+  <ion-card-content>
+    <h1>{{filme.nomeFilme}} 
+      <ion-chip color="filme.notaFilme < 5 ? 'danger' : ((filme.notaFilme < 7) ? 'warning' : 'success')">{{filme.notaFilme}}</ion-chip>
+     </h1>
+    <p>
+      {{filme.anoFilme | date:'shortDate'}}
+    </p>
+  </ion-card-content>
+  </ion-card>
+</ion-content>
