@@ -30,7 +30,15 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoMini = new javax.swing.JLabel();
         voltarButton = new javax.swing.JButton();
-        pesquisarLabel = new javax.swing.JButton();
+        pesquisarLabel = new javax.swing.JLabel();
+        explorarBox2 = new javax.swing.JLabel();
+        anoFilme = new javax.swing.JLabel();
+        notaFilme = new javax.swing.JLabel();
+        nomeFilme = new javax.swing.JLabel();
+        filmePoster = new javax.swing.JLabel();
+        dirButton = new javax.swing.JButton();
+        esqButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -62,16 +70,72 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
         jPanel1.add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, -1, -1));
 
         pesquisarLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Pesquisar.png"))); // NOI18N
-        pesquisarLabel.setBorder(null);
-        pesquisarLabel.setBorderPainted(false);
-        pesquisarLabel.setContentAreaFilled(false);
-        pesquisarLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pesquisarLabel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarLabelActionPerformed(evt);
+        pesquisarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pesquisarLabelMouseClicked(evt);
             }
         });
         jPanel1.add(pesquisarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 22, -1, -1));
+
+        explorarBox2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/explorarBox2.png"))); // NOI18N
+        explorarBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                explorarBox2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(explorarBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 141, -1, -1));
+
+        anoFilme.setFont(new java.awt.Font("Sansita One", 0, 32)); // NOI18N
+        anoFilme.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        anoFilme.setText("ANO");
+        anoFilme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(anoFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 206, 320, -1));
+
+        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png"))); // NOI18N
+        jPanel1.add(notaFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 536, -1, -1));
+
+        nomeFilme.setFont(new java.awt.Font("Sansita One", 0, 32)); // NOI18N
+        nomeFilme.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nomeFilme.setText("FILME");
+        nomeFilme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(nomeFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 173, 320, -1));
+        jPanel1.add(filmePoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 256, 193, 255));
+
+        dirButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/setaD2.png"))); // NOI18N
+        dirButton.setBorder(null);
+        dirButton.setBorderPainted(false);
+        dirButton.setContentAreaFilled(false);
+        dirButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        dirButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dirButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(dirButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(726, 366, -1, -1));
+
+        esqButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/setaE2.png"))); // NOI18N
+        esqButton.setBorder(null);
+        esqButton.setBorderPainted(false);
+        esqButton.setContentAreaFilled(false);
+        esqButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        esqButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esqButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(esqButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 366, -1, -1));
+
+        saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/likeButtonPressed.png"))); // NOI18N
+        saveButton.setBorder(null);
+        saveButton.setBorderPainted(false);
+        saveButton.setContentAreaFilled(false);
+        saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 654, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,16 +159,32 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_voltarButtonActionPerformed
 
-    private void pesquisarLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarLabelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesquisarLabelActionPerformed
-
     private void logoMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMiniMouseClicked
         Home home = new Home(this.user);
 
         home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoMiniMouseClicked
+
+    private void pesquisarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesquisarLabelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisarLabelMouseClicked
+
+    private void explorarBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_explorarBox2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_explorarBox2MouseClicked
+
+    private void dirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dirButtonActionPerformed
+
+    private void esqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esqButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_esqButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -170,9 +250,17 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel anoFilme;
+    private javax.swing.JButton dirButton;
+    private javax.swing.JButton esqButton;
+    private javax.swing.JLabel explorarBox2;
+    private javax.swing.JLabel filmePoster;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoMini;
-    private javax.swing.JButton pesquisarLabel;
+    private javax.swing.JLabel nomeFilme;
+    private javax.swing.JLabel notaFilme;
+    private javax.swing.JLabel pesquisarLabel;
+    private javax.swing.JButton saveButton;
     private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }
