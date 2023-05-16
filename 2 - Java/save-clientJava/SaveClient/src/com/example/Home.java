@@ -35,6 +35,7 @@ public class Home extends javax.swing.JFrame {
         nomeLabel = new javax.swing.JLabel();
         filmesButton = new javax.swing.JButton();
         explorarButton = new javax.swing.JButton();
+        saveFilmButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -61,7 +62,6 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(986, 10, -1, -1));
 
         nomeLabel.setFont(new java.awt.Font("Sansita One", 1, 48)); // NOI18N
-        nomeLabel.setForeground(new java.awt.Color(0, 0, 0));
         nomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nomeLabel.setText("NOME");
         jPanel1.add(nomeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 1024, -1));
@@ -77,7 +77,7 @@ public class Home extends javax.swing.JFrame {
                 filmesButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 357, -1, -1));
+        jPanel1.add(filmesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 357, -1, -1));
 
         explorarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mundoIcon.png"))); // NOI18N
         explorarButton.setBorder(null);
@@ -90,7 +90,20 @@ public class Home extends javax.swing.JFrame {
                 explorarButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(explorarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(584, 372, -1, -1));
+        jPanel1.add(explorarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(746, 372, -1, -1));
+
+        saveFilmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/filmIcon.png"))); // NOI18N
+        saveFilmButton.setBorder(null);
+        saveFilmButton.setBorderPainted(false);
+        saveFilmButton.setContentAreaFilled(false);
+        saveFilmButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveFilmButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/image/filmIconPressed.png"))); // NOI18N
+        saveFilmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveFilmButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(saveFilmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 390, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,6 +142,13 @@ public class Home extends javax.swing.JFrame {
         exp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_explorarButtonActionPerformed
+
+    private void saveFilmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFilmButtonActionPerformed
+        Filmes2 filmes2 = new Filmes2(user);
+        
+        filmes2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_saveFilmButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -170,5 +190,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel logoMini;
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel nomeLabel;
+    private javax.swing.JButton saveFilmButton;
     // End of variables declaration//GEN-END:variables
 }
