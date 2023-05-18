@@ -30,9 +30,9 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoMini = new javax.swing.JLabel();
         pesquisarField = new javax.swing.JTextField();
+        pesquisarBar = new javax.swing.JLabel();
+        pesquisarLabel = new javax.swing.JLabel();
         voltarButton = new javax.swing.JButton();
-        pesquisarLabel = new javax.swing.JButton();
-        searchBarImg = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -51,9 +51,21 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
         });
         jPanel1.add(logoMini, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        pesquisarField.setFont(new java.awt.Font("Sansita", 0, 12)); // NOI18N
         pesquisarField.setText("Pesquisar...");
         pesquisarField.setBorder(null);
+        pesquisarField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarFieldActionPerformed(evt);
+            }
+        });
         jPanel1.add(pesquisarField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 490, 47));
+
+        pesquisarBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/SearchBar.png"))); // NOI18N
+        jPanel1.add(pesquisarBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 357, -1, -1));
+
+        pesquisarLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Pesquisar.png"))); // NOI18N
+        jPanel1.add(pesquisarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
         voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/voltar.png"))); // NOI18N
         voltarButton.setBorder(null);
@@ -66,30 +78,6 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
             }
         });
         jPanel1.add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, -1, -1));
-
-        pesquisarLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Pesquisar.png"))); // NOI18N
-        pesquisarLabel.setBorder(null);
-        pesquisarLabel.setBorderPainted(false);
-        pesquisarLabel.setContentAreaFilled(false);
-        pesquisarLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pesquisarLabel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarLabelActionPerformed(evt);
-            }
-        });
-        jPanel1.add(pesquisarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 22, -1, -1));
-
-        searchBarImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/SearchBar.png"))); // NOI18N
-        searchBarImg.setBorder(null);
-        searchBarImg.setBorderPainted(false);
-        searchBarImg.setContentAreaFilled(false);
-        searchBarImg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        searchBarImg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBarImgActionPerformed(evt);
-            }
-        });
-        jPanel1.add(searchBarImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 357, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,20 +101,16 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_voltarButtonActionPerformed
 
-    private void pesquisarLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarLabelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesquisarLabelActionPerformed
-
-    private void searchBarImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarImgActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBarImgActionPerformed
-
     private void logoMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMiniMouseClicked
         Home home = new Home(this.user);
 
         home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoMiniMouseClicked
+
+    private void pesquisarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisarFieldActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -178,9 +162,9 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoMini;
+    private javax.swing.JLabel pesquisarBar;
     private javax.swing.JTextField pesquisarField;
-    private javax.swing.JButton pesquisarLabel;
-    private javax.swing.JButton searchBarImg;
+    private javax.swing.JLabel pesquisarLabel;
     private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }
