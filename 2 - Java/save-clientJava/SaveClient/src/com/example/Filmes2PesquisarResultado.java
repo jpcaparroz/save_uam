@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.models.Filme;
 import com.example.models.FilmeUsuario;
 import com.example.models.Usuario;
 import java.awt.Image;
@@ -19,8 +20,8 @@ import javax.swing.JOptionPane;
 public class Filmes2PesquisarResultado extends javax.swing.JFrame {
     
     Usuario user;
-    
-    List<FilmeUsuario> listaFilme = new ArrayList<>();
+    List<Filme> listaFilme = new ArrayList<>();;
+
     int count = 0;
     int countMax = 0;
 
@@ -30,27 +31,11 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
     }
     
     //Construtor
-    public Filmes2PesquisarResultado(Usuario user){
+    public Filmes2PesquisarResultado(Usuario user, List listaFilme){
         initComponents();
         
         this.user = user;
-    }
-     
-    //Método para listar filmes
-    public void listarFilmes(){
-        
-        try {
-
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
-
-            Save stub = (Save) registry.lookup("Save");
-            
-            listaFilme = stub.getFilme();
-            countMax = listaFilme.size();
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        this.listaFilme = listaFilme;
     }
     
     // Método para exibir filmes
@@ -59,31 +44,6 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
 
             nomeFilme.setText(listaFilme.get(count).getNomeFilme());
             anoFilme.setText(Integer.toString(listaFilme.get(count).getAnoFilme()));
-
-            switch (listaFilme.get(count).getNotaFilme()) {
-                case 1:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
-                    break;
-                case 2:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota2.png")));
-                    break;
-                case 3:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota3.png")));
-                    break;
-                case 4:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota4.png")));
-                    break;
-                case 5:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota5.png")));
-                    break;
-                default:
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
-            }
 
             filmePoster.setIcon(poster(listaFilme.get(count).getPosterFilme()));
             
@@ -135,7 +95,6 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
         voltarButton = new javax.swing.JButton();
         pesquisarLabel = new javax.swing.JLabel();
         anoFilme = new javax.swing.JLabel();
-        notaFilme = new javax.swing.JLabel();
         nomeFilme = new javax.swing.JLabel();
         filmePoster = new javax.swing.JLabel();
         explorarBox2 = new javax.swing.JLabel();
@@ -176,20 +135,19 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
         jPanel1.add(pesquisarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
 
         anoFilme.setFont(new java.awt.Font("Sansita One", 0, 32)); // NOI18N
+        anoFilme.setForeground(new java.awt.Color(0, 0, 0));
         anoFilme.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         anoFilme.setText("ANO");
         anoFilme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(anoFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 206, 320, -1));
-
-        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png"))); // NOI18N
-        jPanel1.add(notaFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 536, -1, -1));
+        jPanel1.add(anoFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 320, -1));
 
         nomeFilme.setFont(new java.awt.Font("Sansita One", 0, 32)); // NOI18N
+        nomeFilme.setForeground(new java.awt.Color(0, 0, 0));
         nomeFilme.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nomeFilme.setText("FILME");
         nomeFilme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(nomeFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 173, 320, -1));
-        jPanel1.add(filmePoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 256, 193, 255));
+        jPanel1.add(nomeFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 320, -1));
+        jPanel1.add(filmePoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 295, 193, 255));
 
         explorarBox2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/explorarBox2.png"))); // NOI18N
         explorarBox2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -290,8 +248,8 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
     }//GEN-LAST:event_esqButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        FilmeUsuario filme = listaFilme.get(count);
-        Adicionar adicionar = new Adicionar(filme, this.user);
+        Filme filme = listaFilme.get(count);
+        Adicionar2 adicionar = new Adicionar2(filme, this.user);
         
         adicionar.setVisible(true);
     }//GEN-LAST:event_saveButtonActionPerformed
@@ -352,7 +310,6 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoMini;
     private javax.swing.JLabel nomeFilme;
-    private javax.swing.JLabel notaFilme;
     private javax.swing.JLabel pesquisarLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton voltarButton;

@@ -26,4 +26,10 @@ public interface Save extends Remote {
     
     public boolean adicionarFilme(FilmeUsuario filme, String email) throws RemoteException;
     
+    //Melhorias save 2.0 -> Consumindo direto da API
+    public boolean adicionarFilme2(Filme filme, String email) throws RemoteException;
+    
+    //Melhorias save 2.0 -> Consumindo direto da API
+    public List<Filme> getFilme2() throws RemoteException;
+    
 }

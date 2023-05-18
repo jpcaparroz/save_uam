@@ -1,11 +1,17 @@
 package com.example;
 
+import com.example.models.Filme;
 import com.example.models.Usuario;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Filmes2Pesquisar extends javax.swing.JFrame {
     
     Usuario user;
+    List<Filme> listaFilme = new ArrayList<>();;
 
     public Filmes2Pesquisar() {
         initComponents();
@@ -29,6 +35,7 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         logoMini = new javax.swing.JLabel();
+        pesquisarButton = new javax.swing.JButton();
         pesquisarField = new javax.swing.JTextField();
         pesquisarBar = new javax.swing.JLabel();
         pesquisarLabel = new javax.swing.JLabel();
@@ -51,7 +58,20 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
         });
         jPanel1.add(logoMini, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        pesquisarButton.setBorder(null);
+        pesquisarButton.setBorderPainted(false);
+        pesquisarButton.setContentAreaFilled(false);
+        pesquisarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pesquisarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(pesquisarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 360, 50, 50));
+
+        pesquisarField.setBackground(new java.awt.Color(255, 255, 255));
         pesquisarField.setFont(new java.awt.Font("Sansita", 0, 12)); // NOI18N
+        pesquisarField.setForeground(new java.awt.Color(0, 0, 0));
         pesquisarField.setText("Pesquisar...");
         pesquisarField.setBorder(null);
         pesquisarField.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +132,27 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pesquisarFieldActionPerformed
 
+    private void pesquisarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarButtonActionPerformed
+        String filme = pesquisarField.getText();
+        
+        try {
+
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+
+            Save stub = (Save) registry.lookup("Save");
+
+            listaFilme = stub.getFilme2();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        Filmes2PesquisarResultado pesquisa = new Filmes2PesquisarResultado(this.user, this.listaFilme);
+        
+        pesquisa.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_pesquisarButtonActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -163,6 +204,7 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoMini;
     private javax.swing.JLabel pesquisarBar;
+    private javax.swing.JButton pesquisarButton;
     private javax.swing.JTextField pesquisarField;
     private javax.swing.JLabel pesquisarLabel;
     private javax.swing.JButton voltarButton;

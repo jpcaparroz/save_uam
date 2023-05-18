@@ -60,31 +60,6 @@ public class Filmes2Recomendacoes extends javax.swing.JFrame {
             nomeFilme.setText(listaFilme.get(count).getNomeFilme());
             anoFilme.setText(Integer.toString(listaFilme.get(count).getAnoFilme()));
 
-            switch (listaFilme.get(count).getNotaFilme()) {
-                case 1:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
-                    break;
-                case 2:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota2.png")));
-                    break;
-                case 3:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota3.png")));
-                    break;
-                case 4:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota4.png")));
-                    break;
-                case 5:
-
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota5.png")));
-                    break;
-                default:
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
-            }
-
             filmePoster.setIcon(poster(listaFilme.get(count).getPosterFilme()));
             
         } catch (Exception ex) {
@@ -136,7 +111,6 @@ public class Filmes2Recomendacoes extends javax.swing.JFrame {
         topcemLabel = new javax.swing.JLabel();
         recomendacoesLabel = new javax.swing.JLabel();
         anoFilme = new javax.swing.JLabel();
-        notaFilme = new javax.swing.JLabel();
         nomeFilme = new javax.swing.JLabel();
         filmePoster = new javax.swing.JLabel();
         explorarBox2 = new javax.swing.JLabel();
@@ -180,20 +154,19 @@ public class Filmes2Recomendacoes extends javax.swing.JFrame {
         jPanel1.add(recomendacoesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
         anoFilme.setFont(new java.awt.Font("Sansita One", 0, 32)); // NOI18N
+        anoFilme.setForeground(new java.awt.Color(0, 0, 0));
         anoFilme.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         anoFilme.setText("ANO");
         anoFilme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(anoFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 206, 320, -1));
-
-        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png"))); // NOI18N
-        jPanel1.add(notaFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 536, -1, -1));
+        jPanel1.add(anoFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 320, -1));
 
         nomeFilme.setFont(new java.awt.Font("Sansita One", 0, 32)); // NOI18N
+        nomeFilme.setForeground(new java.awt.Color(0, 0, 0));
         nomeFilme.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nomeFilme.setText("FILME");
         nomeFilme.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(nomeFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 173, 320, -1));
-        jPanel1.add(filmePoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 256, 193, 255));
+        jPanel1.add(nomeFilme, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 320, -1));
+        jPanel1.add(filmePoster, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 295, 193, 255));
 
         explorarBox2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/explorarBox2.png"))); // NOI18N
         explorarBox2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -348,7 +321,6 @@ public class Filmes2Recomendacoes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoMini;
     private javax.swing.JLabel nomeFilme;
-    private javax.swing.JLabel notaFilme;
     private javax.swing.JLabel recomendacoesLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JLabel topcemLabel;
