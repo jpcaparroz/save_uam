@@ -62,6 +62,7 @@ public class Home extends javax.swing.JFrame {
         jPanel1.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(986, 10, -1, -1));
 
         nomeLabel.setFont(new java.awt.Font("Sansita One", 1, 48)); // NOI18N
+        nomeLabel.setForeground(new java.awt.Color(0, 0, 0));
         nomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nomeLabel.setText("NOME");
         jPanel1.add(nomeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 1024, -1));
