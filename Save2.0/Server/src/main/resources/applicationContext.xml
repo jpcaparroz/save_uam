@@ -1,0 +1,8 @@
+<bean id="remoteService" class="com.example.RemoteServiceImpl" />
+
+<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+    <property name="serviceName" value="SaveService" />
+    <property name="service" ref="saveService" />
+    <property name="serviceInterface" value="com.api.server.rmi.SaveService" />
+    <property name="registryPort" value="18000" />
+</bean>

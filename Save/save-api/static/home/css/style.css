@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #000000;
+    --btn-hover-color: #404040;
+    --ff-jetbrains: 'JetBrains Mono', monospace;
+    --ff-sansita: 'Sansita', sans-serif;
+    --ff-sansita-one: 'Sansita One', cursive;
+    font-size: 62.5%;
+}
+
+body {
+    font-family: var(--ff-sansita-one);
+    display: grid;
+    min-height: 100vh;
+}
+
+header {
+    font-size: 2.4rem;
+    
+    margin-top: 1.5rem;
+
+    align-self: flex-start;
+    justify-self: center;
+}
+
+.btn-logout {
+    position: fixed;
+    top: 1.5rem;
+    right: .1rem;
+}
+
+main {
+    align-self: flex-start;
+    justify-self: center;
+}
+
+button {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.buttons-wrapper {
+    margin: 10rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+button svg {
+    width: clamp(2rem, 2rem + 13vw, 9rem);
+}
+
+button svg path {
+    transition: fill .3s;
+}
+
+button svg path:hover {
+    fill: var(--btn-hover-color);
+}
