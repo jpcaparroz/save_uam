@@ -211,7 +211,7 @@ public class Index extends javax.swing.JFrame {
 
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
-            Save stub = (Save) registry.lookup("Save");
+            Save stub = (Save) registry.lookup("saveService");
 
             Usuario user = new Usuario();
 
