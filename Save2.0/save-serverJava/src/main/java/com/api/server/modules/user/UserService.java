@@ -33,10 +33,6 @@ public class UserService {
 
         final Optional<User> user = userRepository.findUserByEmail(email);
 
-        if (user.isEmpty()) {
-            return UserDto.builder().build();
-        }
-
 //        if (user.isEmpty()) {
 //            throw new NotFoundException(String.format("User with email: %s not found!", email));
 //        }
