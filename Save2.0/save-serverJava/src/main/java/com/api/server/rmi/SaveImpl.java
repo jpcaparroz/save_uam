@@ -1,7 +1,6 @@
 package com.api.server.rmi;
 
 import com.api.server.modules.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.rmi.RemoteException;
@@ -9,10 +8,13 @@ import java.rmi.RemoteException;
 @Component
 public class SaveImpl implements SaveService  {
 
-    @Autowired
+    final
     UserService userService;
 
-    @Override
+    public SaveImpl(UserService userService) {
+        this.userService = userService;
+    }
+
     public boolean login(String login) throws RemoteException {
         String userEmail = userService.getUserByEmail(login)
                 .getEmail();

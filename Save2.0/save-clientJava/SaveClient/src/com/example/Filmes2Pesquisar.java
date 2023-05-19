@@ -7,6 +7,7 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import com.api.server.rmi.SaveService;
 
 public class Filmes2Pesquisar extends javax.swing.JFrame {
     
@@ -139,7 +140,7 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
 
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
-            Save stub = (Save) registry.lookup("Save");
+            SaveService stub = (SaveService) registry.lookup("Save");
 
             listaFilme = stub.getFilme2();
 

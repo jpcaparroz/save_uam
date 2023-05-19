@@ -16,6 +16,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.api.server.rmi.SaveService;
 
 public class Filmes extends javax.swing.JFrame {
     
@@ -175,7 +176,7 @@ public class Filmes extends javax.swing.JFrame {
 
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
-            Save stub = (Save) registry.lookup("Save");
+            SaveService stub = (SaveService) registry.lookup("Save");
             
             listaFilme = stub.getFilmeUsuario(user.getEmail());
             countMax = listaFilme.size();

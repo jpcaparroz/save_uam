@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import com.api.server.rmi.SaveService;
 
 public class Adicionar2 extends javax.swing.JFrame {
     
@@ -199,7 +200,7 @@ public class Adicionar2 extends javax.swing.JFrame {
 
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
-            Save stub = (Save) registry.lookup("Save");
+            SaveService stub = (SaveService) registry.lookup("Save");
 
             filme.setNotaFilme(notaSlider.getValue());
 

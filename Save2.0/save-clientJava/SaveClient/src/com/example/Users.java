@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.api.server.rmi.SaveService;
 
 public class Users extends javax.swing.JFrame {
     
@@ -35,7 +36,7 @@ public class Users extends javax.swing.JFrame {
 
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
-            Save stub = (Save) registry.lookup("Save");
+            SaveService stub = (SaveService) registry.lookup("Save");
             
             List <Usuario> usuarios = new ArrayList<>();
             

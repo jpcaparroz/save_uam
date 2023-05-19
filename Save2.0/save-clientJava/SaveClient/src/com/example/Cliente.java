@@ -6,6 +6,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
+import com.api.server.rmi.SaveService;
 
 public class Cliente {
 
@@ -15,7 +16,7 @@ public class Cliente {
 
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
-            Save stub = (Save) registry.lookup("Save");
+            SaveService stub = (SaveService) registry.lookup("Save");
             
             List<FilmeUsuario> lista = new ArrayList<>();
             

@@ -4,6 +4,7 @@ import com.example.models.Usuario;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import javax.swing.JOptionPane;
+import com.api.server.rmi.SaveService;
 
 public class Index extends javax.swing.JFrame {
 
@@ -211,11 +212,11 @@ public class Index extends javax.swing.JFrame {
 
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
-            Save stub = (Save) registry.lookup("saveService");
+            SaveService stub = (SaveService) registry.lookup("Save");
 
             Usuario user = new Usuario();
 
-            user = stub.getUsuario(login);
+            //user = stub.getUsuario(login);
 
             if (stub.login(login) == true) {
 
@@ -255,7 +256,7 @@ public class Index extends javax.swing.JFrame {
 
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
-            Save stub = (Save) registry.lookup("Save");
+            SaveService stub = (SaveService) registry.lookup("Save");
 
             if (stub.cadastrar(email, nome) == true) {
 
