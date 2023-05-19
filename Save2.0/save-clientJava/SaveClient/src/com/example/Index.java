@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.models.Usuario;
+import com.api.server.rmi.modules.Usuario;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import javax.swing.JOptionPane;
@@ -216,7 +216,7 @@ public class Index extends javax.swing.JFrame {
 
             Usuario user = new Usuario();
 
-            //user = stub.getUsuario(login);
+           user = stub.getUsuario(login);
 
             if (stub.login(login) == true) {
 
@@ -242,6 +242,7 @@ public class Index extends javax.swing.JFrame {
 
         } catch (Exception e) {
             System.out.println(e);
+            mensagemPopUp("Login não encontrado ");
         }
 
     }//GEN-LAST:event_entrarButtonActionPerformed
@@ -270,6 +271,7 @@ public class Index extends javax.swing.JFrame {
             
         } catch (Exception e) {
             System.out.println(e);
+            mensagemPopUp("Email já cadastrado =(");
         }
     }//GEN-LAST:event_cadastrarActionPerformed
 

@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.models.Usuario;
+import com.api.server.rmi.modules.Usuario;
 import javax.swing.JOptionPane;
 
 public class AdminHome extends javax.swing.JFrame {

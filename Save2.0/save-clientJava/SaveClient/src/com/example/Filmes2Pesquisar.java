@@ -1,7 +1,7 @@
 package com.example;
 
-import com.example.models.Filme;
-import com.example.models.Usuario;
+import com.api.server.rmi.modules.Filme;
+import com.api.server.rmi.modules.Usuario;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;

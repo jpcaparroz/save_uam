@@ -1,6 +1,8 @@
 package com.api.server.rmi;
 
-import com.example.models.*;
+import com.api.server.rmi.modules.FilmeUsuario;
+import com.api.server.rmi.modules.Filme;
+import com.api.server.rmi.modules.Usuario;
 import java.util.List;
 
 import java.rmi.Remote;

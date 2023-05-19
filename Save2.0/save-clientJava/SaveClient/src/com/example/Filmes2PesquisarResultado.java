@@ -1,8 +1,8 @@
 package com.example;
 
-import com.example.models.Filme;
-import com.example.models.FilmeUsuario;
-import com.example.models.Usuario;
+import com.api.server.rmi.modules.Filme;
+import com.api.server.rmi.modules.FilmeUsuario;
+import com.api.server.rmi.modules.Usuario;
 import java.awt.Image;
 import java.io.InputStream;
 import java.net.URL;

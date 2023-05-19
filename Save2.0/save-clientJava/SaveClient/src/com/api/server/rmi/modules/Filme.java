@@ -1,29 +1,14 @@
-package com.example.models;
+package com.api.server.rmi.modules;
 
 import java.io.Serializable;
 
-public class FilmeUsuario implements Serializable{
+public class Filme implements Serializable{
     
-    private int id;
-    private String emailUsuario;
     private String nomeFilme;
     private int anoFilme;
     private String posterFilme;
     private int notaFilme;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getEmailUsuario() {
-        return emailUsuario;
-    }
-    public void setEmailUsuario(String emailUsuario) {
-        this.emailUsuario = emailUsuario;
-    }
     public String getNomeFilme() {
         return nomeFilme;
     }

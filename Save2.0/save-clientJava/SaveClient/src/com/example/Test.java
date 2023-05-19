@@ -1,7 +1,6 @@
 package com.example;
 
 import com.api.server.rmi.SaveService;
-import com.example.models.Usuario;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -21,9 +20,13 @@ public class Test {
 
             SaveService stub = (SaveService) registry.lookup("Save");
             
-            String login = "rootaa@admin.com";
+            String login = "root@admin.com";
 
             if (stub.login(login) == true) {
+                
+                
+                
+                System.out.println(stub.getUsuario(login).getNome()); 
                 
                 System.out.println("FOI!!!!!!!");
             } else {
