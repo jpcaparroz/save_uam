@@ -8,9 +8,6 @@ import java.rmi.Remote;
 public class SaveConfig implements Remote {
 
 
-    SaveService saveService() {
-        return new SaveImpl(userService, moviesService);
-    }
 
 
     RmiServiceExporter exporter(SaveService implementation) {

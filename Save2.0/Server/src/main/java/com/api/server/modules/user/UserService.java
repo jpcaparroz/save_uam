@@ -3,6 +3,7 @@ package com.api.server.modules.user;
 import com.api.server.configs.handlers.badrequest.BadRequestException;
 import com.api.server.configs.handlers.notfound.NotFoundException;
 import com.api.server.modules.movies.MoviesDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,16 +16,11 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class UserService {
 
-    final
+    @Autowired
     UserRepository userRepository;
 
-    final
+    @Autowired
     UserMapper userMapper;
-
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
 
     @Transactional
     public UserDto createUser(UserDto userDto) {
