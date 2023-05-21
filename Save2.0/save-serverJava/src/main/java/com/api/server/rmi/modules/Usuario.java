@@ -10,9 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 public class Usuario implements Serializable {
-
-    private static final long serialVersionUID = 6529685098267757690L;
-
+    private static final long serialVersionUID = 1L;
     private String email;
     private String nome;
 }

@@ -3,7 +3,6 @@ package com.api.server.modules.user;
 import com.api.server.configs.handlers.badrequest.BadRequestException;
 import com.api.server.configs.handlers.notfound.NotFoundException;
 import com.api.server.modules.movies.MoviesDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,16 +10,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.stream.Collectors.toList;
-
 @Service
 public class UserService {
 
-    @Autowired
+    final
     UserRepository userRepository;
 
-    @Autowired
+    final
     UserMapper userMapper;
+
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+    }
 
     @Transactional
     public UserDto createUser(UserDto userDto) {
@@ -33,9 +35,9 @@ public class UserService {
 
         final Optional<User> user = userRepository.findUserByEmail(email);
 
-//        if (user.isEmpty()) {
-//            throw new NotFoundException(String.format("User with email: %s not found!", email));
-//        }
+        if (user.isEmpty()) {
+            throw new NotFoundException(String.format("User with email: %s not found!", email));
+        }
 
         return userMapper.toUserDto(user.get());
     }
@@ -49,17 +51,15 @@ public class UserService {
     public List<UserDto> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(userMapper::toUserDto)
-                .collect(toList());
+                .toList();
     }
 
     @Transactional
     public boolean deleteUser(String email) {
-
         UserDto user = getUserByEmail(email);
 
         try {
             userRepository.deleteById(user.getId());
-
         } catch (Exception e) {
             throw new BadRequestException(e.getMessage());
         }

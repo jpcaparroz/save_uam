@@ -24,32 +24,32 @@ public class UserController {
                 .body(userService.createUser(userDto));
     }
 
-    @GetMapping
+    @GetMapping("/list")
     ResponseEntity<List<UserDto>> getUsers() {
         return ResponseEntity.ok()
                 .body(userService.getAllUsers());
     }
 
-    @GetMapping("/{email}")
-    ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
+    @GetMapping
+    ResponseEntity<UserDto> getUserByEmail(@RequestParam("email") String email) {
         return ResponseEntity.ok()
                 .body(userService.getUserByEmail(email));
     }
 
-    @GetMapping("/{email}/movies")
-    ResponseEntity<Set<MoviesDto>> getMoviesFromUser(@PathVariable("email") String email) {
+    @GetMapping("/movies")
+    ResponseEntity<Set<MoviesDto>> getMoviesFromUser(@RequestParam("email") String email) {
         return ResponseEntity.ok()
                 .body(userService.getMovies(email));
     }
 
-    @PutMapping("/{email}")
-    ResponseEntity<UserDto> updateUser(@PathVariable("email") String email) {
+    @PutMapping
+    ResponseEntity<UserDto> updateUser(@RequestParam("email") String email) {
         return ResponseEntity.ok()
                 .body(userService.getUserByEmail(email));
     }
 
-    @DeleteMapping("/{email}")
-    ResponseEntity<UserDto> deleteUser(@PathVariable("email") String email) {
+    @DeleteMapping
+    ResponseEntity<UserDto> deleteUser(@RequestParam("email") String email) {
         return ResponseEntity.ok()
                 .body(userService.getUserByEmail(email));
     }

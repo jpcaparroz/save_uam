@@ -36,10 +36,9 @@ public class MoviesService {
     @Transactional(readOnly = true)
     public List<MoviesDto> getMovies() {
 
-        List<MoviesDto> movies = moviesRepository.findAll().stream()
-                .map(moviesMapper::toMoviesDto).collect(Collectors.toList());
-
-        return movies;
+        return moviesRepository.findAll().stream()
+                .map(moviesMapper::toMoviesDto)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

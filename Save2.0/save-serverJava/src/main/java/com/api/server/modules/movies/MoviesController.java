@@ -34,4 +34,17 @@ public class MoviesController {
                 .body(moviesService.getMovie(id));
     }
 
+    @DeleteMapping
+    ResponseEntity<Boolean> deleteMovie(@RequestParam("id") Long id) {
+        return ResponseEntity.ok()
+                .body(moviesService.deleteMovie(id));
+    }
+
+    @PutMapping
+    ResponseEntity<MoviesDto> updateMovie(@RequestParam("id") Long id,
+                                          @RequestBody MoviesDto moviesDto) {
+        return ResponseEntity.ok()
+                .body(moviesService.updateMovie(id, moviesDto));
+    }
+
 }
