@@ -1,6 +1,5 @@
 package com.example;
 
-import com.api.server.rmi.modules.Filme;
 import com.api.server.rmi.modules.FilmeUsuario;
 import com.api.server.rmi.modules.Usuario;
 import java.awt.Image;
@@ -21,7 +20,7 @@ import com.api.server.rmi.SaveService;
 public class Adicionar2 extends javax.swing.JFrame {
     
     Usuario user;
-    Filme filme;
+    FilmeUsuario filme;
     boolean achou = false;
     
     List<FilmeUsuario> lista = new ArrayList<>();
@@ -31,7 +30,7 @@ public class Adicionar2 extends javax.swing.JFrame {
 
     }
 
-    public Adicionar2(Filme filme, Usuario user){
+    public Adicionar2(FilmeUsuario filme, Usuario user){
         initComponents();
         
         this.filme = filme;
@@ -219,7 +218,7 @@ public class Adicionar2 extends javax.swing.JFrame {
 
             } else {
                 
-                stub.adicionarFilme2(filme, user.getEmail());
+                stub.adicionarFilme(filme, user.getEmail());
                 mensagemPopUp("Filme " + filme.getNomeFilme() + " adicionado com sucesso!");
                 this.dispose();
 

@@ -249,7 +249,13 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         Filme filme = listaFilme.get(count);
-        Adicionar2 adicionar = new Adicionar2(filme, this.user);
+        FilmeUsuario filmeUser = new FilmeUsuario();
+        
+        filmeUser.setAnoFilme(filme.getAnoFilme());
+        filmeUser.setPosterFilme(filme.getPosterFilme());
+        filmeUser.setNomeFilme(filme.getNomeFilme());
+        
+        Adicionar adicionar = new Adicionar(filmeUser, this.user);
         
         adicionar.setVisible(true);
     }//GEN-LAST:event_saveButtonActionPerformed

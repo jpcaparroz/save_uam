@@ -142,7 +142,7 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
 
             SaveService stub = (SaveService) registry.lookup("Save");
 
-            listaFilme = stub.getFilme2();
+            listaFilme = stub.getFilme2(filme);
 
         } catch (Exception e) {
             System.out.println(e);

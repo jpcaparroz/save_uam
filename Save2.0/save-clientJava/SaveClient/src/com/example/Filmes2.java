@@ -112,14 +112,18 @@ public class Filmes2 extends javax.swing.JFrame {
 
     private void pesquisarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarButtonActionPerformed
 
-        Explorar exp = new Explorar(user);
+        Filmes2Pesquisar pesq = new Filmes2Pesquisar(user);
 
-        exp.setVisible(true);
+        pesq.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_pesquisarButtonActionPerformed
 
     private void recomendacoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recomendacoesButtonActionPerformed
-        // TODO add your handling code here:
+        
+        Filmes2Recomendacoes recomend = new Filmes2Recomendacoes(user);
+
+        recomend.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_recomendacoesButtonActionPerformed
 
     private void logoMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMiniMouseClicked

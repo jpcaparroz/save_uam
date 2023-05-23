@@ -170,32 +170,35 @@ public class Excluir extends javax.swing.JFrame {
     }//GEN-LAST:event_voltarButtonActionPerformed
 
     private void excluirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirButtonActionPerformed
-        
+
         try {
-            
+
             String excluir = excluirCombo.getSelectedItem().toString();
-            
+
             Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
 
             SaveService stub = (SaveService) registry.lookup("Save");
-            
-            if (stub.excluirUsuario(excluir)) {
-                
-                mensagemPopUp("Erro ao exlcuir o usuario...");
-                
-            } else {  
-                
+
+            if (excluir.equals("root@admin.com")) {
+
+                mensagemPopUp("Não é possível excluir o admin.");
+
+            } else {
+
                 listarUsuarios();
                 mensagemPopUp("Usuario " + excluir + " excluido com sucesso!");
-                
+
             }
-            
-            if(excluir.isBlank() || excluir.isEmpty()) {
+
+            if (excluir.isBlank() || excluir.isEmpty()) {
                 mensagemPopUp("Usuário inválido");
-            } else {
+                
+            } else if (!excluir.equals("root@admin.com")) {
+
                 stub.excluirUsuario(excluir);
-            }           
-            
+                listarUsuarios();
+            }
+
         } catch (Exception e) {
             System.out.println(e);
         }

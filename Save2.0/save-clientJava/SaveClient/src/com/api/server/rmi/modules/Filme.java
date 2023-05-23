@@ -4,10 +4,11 @@ import java.io.Serializable;
 
 public class Filme implements Serializable{
     
+    private static final long serialVersionUID = 1L;
+    
     private String nomeFilme;
     private int anoFilme;
     private String posterFilme;
-    private int notaFilme;
 
     public String getNomeFilme() {
         return nomeFilme;
@@ -27,11 +28,4 @@ public class Filme implements Serializable{
     public void setPosterFilme(String posterFilme) {
         this.posterFilme = posterFilme;
     }
-    public int getNotaFilme() {
-        return notaFilme;
-    }
-    public void setNotaFilme(int notaFilme) {
-        this.notaFilme = notaFilme;
-    }
-  
 }
