@@ -107,39 +107,45 @@ public class Filmes extends javax.swing.JFrame {
     
     // Método para setar o filme com poster
     public void filmePoster(){
-        try {
-            
-            nomeFilme.setText(listaFilme.get(count).getNomeFilme());
-            anoFilme.setText(Integer.toString(listaFilme.get(count).getAnoFilme()));
-            
-            switch (listaFilme.get(count).getNotaFilme()) {
-                case 1:
-                    
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
-                    break;
-                case 2:
-                    
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota2.png")));                    
-                    break;
-                case 3:
-                    
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota3.png")));                     
-                    break;
-                case 4:
-                    
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota4.png"))); 
-                    break;
-                case 5:
-                    
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota5.png"))); 
-                    break;
-                default:
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
-            }
 
-            filmePoster.setIcon(poster(listaFilme.get(count).getPosterFilme()));
-        } catch (Exception ex) {
-            Logger.getLogger(Filmes.class.getName()).log(Level.SEVERE, null, ex);
+        if (listaFilme.isEmpty()) {
+            mensagemPopUp("Usúario não possue filmes");
+            exibirMenu();
+        } else {
+            try {
+
+                nomeFilme.setText(listaFilme.get(count).getNomeFilme());
+                anoFilme.setText(Integer.toString(listaFilme.get(count).getAnoFilme()));
+
+                switch (listaFilme.get(count).getNotaFilme()) {
+                    case 1:
+
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
+                        break;
+                    case 2:
+
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota2.png")));
+                        break;
+                    case 3:
+
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota3.png")));
+                        break;
+                    case 4:
+
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota4.png")));
+                        break;
+                    case 5:
+
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota5.png")));
+                        break;
+                    default:
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
+                }
+
+                filmePoster.setIcon(poster(listaFilme.get(count).getPosterFilme()));
+            } catch (Exception ex) {
+                Logger.getLogger(Filmes.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
@@ -181,7 +187,12 @@ public class Filmes extends javax.swing.JFrame {
             SaveService stub = (SaveService) registry.lookup("Save");
             
             listaFilme = stub.getFilmeUsuario(user.getEmail());
-            countMax = listaFilme.size();
+            
+            if(listaFilme.isEmpty()){
+                countMax = 1;
+            } else {
+                countMax = listaFilme.size();
+            };
             
             for (FilmeUsuario filme : listaFilme) {
                 String tabelaFilmes[] = {filme.getNomeFilme(), Integer.toString(filme.getAnoFilme()), Integer.toString(filme.getNotaFilme())};
