@@ -21,6 +21,8 @@ public class Test {
             SaveService stub = (SaveService) registry.lookup("Save");
             
             String login = "root@admin.com";
+            
+            System.out.println(stub.getFilme2("Shrek"));
 
             if (stub.login(login) == true) {
                 

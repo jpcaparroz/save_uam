@@ -31,6 +31,7 @@ public class Filmes extends javax.swing.JFrame {
         
         listarFilmes();
         exibirMenu();
+        filmePoster();
     }
     
     //Construtor recebendo user

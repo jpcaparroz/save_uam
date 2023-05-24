@@ -31,11 +31,13 @@ public class Filmes2PesquisarResultado extends javax.swing.JFrame {
     }
     
     //Construtor
-    public Filmes2PesquisarResultado(Usuario user, List listaFilme){
+    public Filmes2PesquisarResultado(Usuario user, List listaFilme, int countMax){
         initComponents();
         
         this.user = user;
         this.listaFilme = listaFilme;
+        this.countMax = countMax;
+        filmePoster();
     }
     
     // Método para exibir filmes

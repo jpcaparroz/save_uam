@@ -12,7 +12,8 @@ import com.api.server.rmi.SaveService;
 public class Filmes2Pesquisar extends javax.swing.JFrame {
     
     Usuario user;
-    List<Filme> listaFilme = new ArrayList<>();;
+    List<Filme> listaFilme = new ArrayList<>();
+    int countMax = 0;
 
     public Filmes2Pesquisar() {
         initComponents();
@@ -143,12 +144,14 @@ public class Filmes2Pesquisar extends javax.swing.JFrame {
             SaveService stub = (SaveService) registry.lookup("Save");
 
             listaFilme = stub.getFilme2(filme);
+            
+            countMax = listaFilme.size();
 
         } catch (Exception e) {
             System.out.println(e);
         }
 
-        Filmes2PesquisarResultado pesquisa = new Filmes2PesquisarResultado(this.user, this.listaFilme);
+        Filmes2PesquisarResultado pesquisa = new Filmes2PesquisarResultado(this.user, this.listaFilme, this.countMax);
         
         pesquisa.setVisible(true);
         this.dispose();
