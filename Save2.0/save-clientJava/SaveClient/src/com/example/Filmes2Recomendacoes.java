@@ -16,12 +16,13 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import com.api.server.rmi.SaveService;
+import com.api.server.rmi.modules.Filme;
 
 public class Filmes2Recomendacoes extends javax.swing.JFrame {
     
     Usuario user;
     
-    List<FilmeUsuario> listaFilme = new ArrayList<>();
+    List<Filme> listaFilme = new ArrayList<>();
     int count = 0;
     int countMax = 0;
 
@@ -34,6 +35,8 @@ public class Filmes2Recomendacoes extends javax.swing.JFrame {
     public Filmes2Recomendacoes(Usuario user){
         initComponents();
         
+        listarFilmes();
+        filmePoster();
         this.user = user;
     }
      
@@ -46,8 +49,8 @@ public class Filmes2Recomendacoes extends javax.swing.JFrame {
 
             SaveService stub = (SaveService) registry.lookup("Save");
             
-            listaFilme = stub.getFilme();
-            countMax = listaFilme.size();
+            listaFilme = stub.getMelhoresFilmes();
+            countMax = 100;
 
         } catch (Exception e) {
             System.out.println(e);
@@ -268,7 +271,12 @@ public class Filmes2Recomendacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_esqButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        FilmeUsuario filme = listaFilme.get(count);
+        FilmeUsuario filme = new FilmeUsuario();
+        
+        filme.setAnoFilme(listaFilme.get(count).getAnoFilme());
+        filme.setNomeFilme(listaFilme.get(count).getNomeFilme());
+        filme.setPosterFilme(listaFilme.get(count).getPosterFilme());
+                
         Adicionar adicionar = new Adicionar(filme, this.user);
         
         adicionar.setVisible(true);

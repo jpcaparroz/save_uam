@@ -31,4 +31,7 @@ public interface SaveService extends Remote {
     //Melhorias save 2.0 -> Consumindo direto da API
     public List<Filme> getFilme2(String filme) throws RemoteException;
     
+    //Melhorias save 2.0 -> Consumindo direto da API
+    public List<Filme> getMelhoresFilmes() throws RemoteException;
+    
 }

@@ -22,7 +22,7 @@ public class Test {
             
             String login = "root@admin.com";
             
-            System.out.println(stub.getFilme2("Shrek"));
+            System.out.println(stub.getMelhoresFilmes().get(100).getNomeFilme());
 
             if (stub.login(login) == true) {
                 
