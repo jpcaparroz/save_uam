@@ -1,13 +1,13 @@
 package com.api.server.modules.movies;
 
 import com.api.server.configs.handlers.notfound.NotFoundException;
+import com.api.server.modules.user.UserDto;
 import com.api.server.modules.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class MoviesService {
@@ -29,16 +29,20 @@ public class MoviesService {
 
     @Transactional
     public MoviesDto createMovie(MoviesDto moviesDto) {
+
+        UserDto user = userService.getById(moviesDto.getUser().getId());
+
+        moviesDto.setUser(user);
+
         return moviesMapper.toMoviesDto(moviesRepository
                 .save(moviesMapper.toMoviesModel(moviesDto)));
     }
-
     @Transactional(readOnly = true)
     public List<MoviesDto> getMovies() {
 
         return moviesRepository.findAll().stream()
                 .map(moviesMapper::toMoviesDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(readOnly = true)

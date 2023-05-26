@@ -17,18 +17,5 @@ CREATE TABLE IF NOT EXISTS `movies`
     PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS `user_movies`
-(
-    `user_id`   BIGINT NOT NULL,
-    `movies_id` BIGINT NOT NULL,
-    PRIMARY KEY (user_id, movies_id)
-);
-
 ALTER TABLE `movies`
     ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user (id);
-
-ALTER TABLE `user_movies`
-    ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES `user` (id);
-
-ALTER TABLE `user_movies`
-    ADD CONSTRAINT fk_movies_id FOREIGN KEY (movies_id) REFERENCES `movies` (id);

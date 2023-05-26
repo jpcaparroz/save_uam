@@ -1,11 +1,10 @@
 package com.api.server.modules.movies;
 
 import com.api.server.modules.user.User;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -15,6 +14,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Movies {
 
     @Id

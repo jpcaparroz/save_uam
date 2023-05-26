@@ -1,6 +1,7 @@
 package com.api.server.modules.user;
 
 import com.api.server.modules.movies.MoviesDto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -18,5 +19,6 @@ public class UserDto {
     private Long id;
     private String email;
     private String name;
+    @JsonIgnoreProperties({"user.movies", "user"})
     private Set<MoviesDto> movies;
 }

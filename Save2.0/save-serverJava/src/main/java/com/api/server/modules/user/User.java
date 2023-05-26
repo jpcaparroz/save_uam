@@ -1,11 +1,14 @@
 package com.api.server.modules.user;
 
 import com.api.server.modules.movies.Movies;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
 
+import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -15,6 +18,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
 
     @Id
@@ -27,6 +31,6 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", cascade = ALL)
     Set<Movies> movies;
 }

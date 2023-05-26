@@ -1,6 +1,7 @@
 package com.api.server.modules.movies;
 
 import com.api.server.modules.user.UserDto;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class MoviesDto {
     private String year;
     private String poster;
     private String rating;
+    @JsonIgnoreProperties("user")
     private UserDto user;
 
 }

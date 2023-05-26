@@ -3,6 +3,7 @@ package com.api.server.modules.user;
 import com.api.server.configs.handlers.badrequest.BadRequestException;
 import com.api.server.configs.handlers.notfound.NotFoundException;
 import com.api.server.modules.movies.MoviesDto;
+import com.api.server.modules.movies.MoviesMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,9 +20,13 @@ public class UserService {
     final
     UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    final
+    MoviesMapper moviesMapper;
+
+    public UserService(UserRepository userRepository, UserMapper userMapper, MoviesMapper moviesMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.moviesMapper = moviesMapper;
     }
 
     @Transactional
@@ -45,6 +50,11 @@ public class UserService {
     @Transactional(readOnly = true)
     public Set<MoviesDto> getMovies(String email) {
         return getUserByEmail(email).getMovies();
+    }
+
+    @Transactional(readOnly = true)
+    public UserDto getById(Long id) {
+        return userMapper.toUserDto(userRepository.findById(id).get());
     }
 
     @Transactional(readOnly = true)
@@ -85,5 +95,4 @@ public class UserService {
         return userMapper.toUserDto(savedUser);
 
     }
-
 }
