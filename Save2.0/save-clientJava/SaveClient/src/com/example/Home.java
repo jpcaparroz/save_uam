@@ -1,12 +1,21 @@
 package com.example;
 
+import com.api.server.rmi.SaveService;
+import com.api.server.rmi.modules.FilmeUsuario;
 import com.api.server.rmi.modules.Usuario;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Home extends javax.swing.JFrame {
     
     Usuario user;
 
+    List<FilmeUsuario> listaFilme = new ArrayList<>();
+    int countMax = 0;
+    
     public Home() {
         initComponents();
 
@@ -130,7 +139,21 @@ public class Home extends javax.swing.JFrame {
 
     private void filmesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filmesButtonActionPerformed
         
-        Filmes filmes = new Filmes(this.user);
+        try {
+
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+
+            SaveService stub = (SaveService) registry.lookup("Save");
+
+            listaFilme = stub.getFilme();
+            
+            countMax = listaFilme.size();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        Filmes filmes = new Filmes(this.user, this.listaFilme, this.countMax);
         
         filmes.setVisible(true);
         this.dispose();

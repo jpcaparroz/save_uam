@@ -35,15 +35,16 @@ public class Filmes extends javax.swing.JFrame {
     }
     
     //Construtor recebendo user
-    public Filmes(Usuario user) {
+    public Filmes(Usuario user, List listaFilme, int countMax) {
         initComponents();
-        
-        this.user = user;
-        
+
         nomeLabel.setText(user.getNome());
         
-        listarFilmes();
-        exibirMenu();
+        this.user = user;
+        this.listaFilme = listaFilme;
+        this.countMax = countMax;
+        
+        filmePoster();
     }
     
     //Método para exibir funções da página Filmes

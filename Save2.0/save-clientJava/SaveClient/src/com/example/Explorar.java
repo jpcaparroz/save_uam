@@ -33,64 +33,52 @@ public class Explorar extends javax.swing.JFrame {
     public Explorar(Usuario user){
         initComponents();
         
-        listarFilmes();
         filmePoster();
         this.user = user;
     }
-    
-    //Método para listar filmes
-    public void listarFilmes(){
-        
-        try {
 
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
-
-            SaveService stub = (SaveService) registry.lookup("Save");
-            
-            listaFilme = stub.getFilme();
-            countMax = listaFilme.size();
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-    
     // Método para exibir filmes
     public void filmePoster() {
-        try {
 
-            nomeFilme.setText(listaFilme.get(count).getNomeFilme());
-            anoFilme.setText(Integer.toString(listaFilme.get(count).getAnoFilme()));
+        if (listaFilme.isEmpty()) {
+            mensagemPopUp("O banco Save não possue filmes");
+        } else {
 
-            switch (listaFilme.get(count).getNotaFilme()) {
-                case 1:
+            try {
 
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
-                    break;
-                case 2:
+                nomeFilme.setText(listaFilme.get(count).getNomeFilme());
+                anoFilme.setText(Integer.toString(listaFilme.get(count).getAnoFilme()));
 
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota2.png")));
-                    break;
-                case 3:
+                switch (listaFilme.get(count).getNotaFilme()) {
+                    case 1:
 
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota3.png")));
-                    break;
-                case 4:
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
+                        break;
+                    case 2:
 
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota4.png")));
-                    break;
-                case 5:
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota2.png")));
+                        break;
+                    case 3:
 
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota5.png")));
-                    break;
-                default:
-                    notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota3.png")));
+                        break;
+                    case 4:
+
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota4.png")));
+                        break;
+                    case 5:
+
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota5.png")));
+                        break;
+                    default:
+                        notaFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nota1.png")));
+                }
+
+                filmePoster.setIcon(poster(listaFilme.get(count).getPosterFilme()));
+
+            } catch (Exception ex) {
+                Logger.getLogger(Filmes.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            filmePoster.setIcon(poster(listaFilme.get(count).getPosterFilme()));
-            
-        } catch (Exception ex) {
-            Logger.getLogger(Filmes.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
