@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #000000;
+    --btn-hover-color: #404040;
+    --fc-mainheader: #F3CA40;
+    --ff-jetbrains: 'JetBrains Mono', monospace;
+    --ff-sansita: 'Sansita', sans-serif;
+    --ff-sansita-one: 'Sansita One', cursive;
+    --ff-thin: 100;
+    --ff-extra-light: 200;
+    --ff-light: 300;
+    --ff-regular: 400;
+    --ff-medium: 500;
+    --ff-semibold: 600;
+    --ff-bold: 700;
+    --ff-extra-bold: 800;
+    font-size: 62.5%;
+}
+
+body {
+    display: grid;
+    min-height: 100vh;
+    font-family: var(--ff-jetbrains);
+}
+
+header {
+    align-self: flex-start;
+    justify-self: center;
+}
+
+main {
+    align-self: flex-start;
+    justify-self: center;
+}
+
+/* header styles */
+
+.save-logo {
+    position: fixed;
+    inset: 1rem auto auto 1rem;
+}
+
+header p {
+    font-weight: var(--ff-extra-bold);
+    font-size: clamp(1.6rem, 2rem + 1vw, 3rem);
+    margin: 3rem auto 2rem;
+}
+
+/* Title styles */
+
+.title {
+    font-family: var(--ff-sansita-one);
+    font-size: clamp(4.7rem, 3rem + 5vw, 9.4rem);
+    text-align: center;
+    text-shadow: -.6rem .3rem 0rem black;
+    color: var(--fc-mainheader);
+}
+
+/* Card Styles */
+
+.movies-container {
+    margin-top: 4rem;
+    padding: clamp(1rem, 1rem + 3vw, 5rem);
+
+    width: clamp(40rem, 5rem + 40vw, 70rem);
+    height: clamp(40rem, 20rem + 40vh, 70rem);
+
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.movies-container {
+    border: .4rem solid black;
+    border-radius: 1.1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    align-content: center;
+
+    gap: 1rem;
+}
+
+/* Movie Wrapper Styles */
+
+.movie-wrapper form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: clamp(15rem, 7rem + 10vw, 35rem);
+
+    gap: .5rem;
+}
+
+/* Input Wrapper Styles */
+
+.input-wrapper {
+    text-align: center;
+}
+
+.input-wrapper h1{
+    font-family: var(--ff-sansita-one);
+    font-size: clamp(1.6rem, 1.6rem + 10vw, 3.6rem);
+}
+
+.input-wrapper h2{
+    font-family: var(--ff-sansita-one);
+    font-size: clamp(1.6rem, 1.6rem + 10vw, 2.7rem);
+}
+
+.input-wrapper p{
+    font-family: var(--ff-jetbrains);
+    font-size: clamp(1rem, 1.6rem + 1vw, 1.6rem);
+}
+
+.movie-wrapper button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.movie-wrapper button svg path {
+    transition: fill .3s;
+}
+
+.movie-wrapper button svg path:hover {
+    fill: #ca2222;
+}
+
+/* Image styles */
+
+.image-wrapper img {
+    width: clamp(5rem, 10rem + 10vw, 15rem);
+    border-radius: 1rem;
+}
+
+/* Movie Rating Styles */
+
+.rating {
+    --dir: right;
+    --fill: gold;
+    --fillbg: rgba(100, 100, 100, 0.15);
+    --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
+    --stars: 5;
+    --starsize: 3rem;
+    --symbol: var(--star);
+    --value: 1;
+    --w: calc(var(--stars) * var(--starsize));
+    --x: calc(100% * (var(--value) / var(--stars)));
+    block-size: var(--starsize);
+    inline-size: var(--w);
+    position: relative;
+    touch-action: manipulation;
+    appearance: none;
+}
+
+[dir="rtl"] .rating {
+    --dir: left;
+}
+
+.rating::-moz-range-track {
+    background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+    block-size: 100%;
+    mask: repeat left center/var(--starsize) var(--symbol);
+}
+
+.rating::-webkit-slider-runnable-track {
+    background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+    block-size: 100%;
+    mask: repeat left center/var(--starsize) var(--symbol);
+    -webkit-mask: repeat left center/var(--starsize) var(--symbol);
+}

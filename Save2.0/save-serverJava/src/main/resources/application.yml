@@ -1,0 +1,30 @@
+server:
+  port: 5000
+
+container:
+  database-url: localhost
+
+top-chart:
+  url: https://api.npoint.io/f403c8828141f5e92307
+
+omdb:
+  url: https://www.omdbapi.com/
+  apiKey: 8cdb9794
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${container.database-url}:3306/save
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: UNSPECIFIED
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+    open-in-view: false
