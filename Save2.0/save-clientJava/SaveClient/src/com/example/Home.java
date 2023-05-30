@@ -145,7 +145,7 @@ public class Home extends javax.swing.JFrame {
 
             SaveService stub = (SaveService) registry.lookup("Save");
 
-            listaFilme = stub.getFilme();
+            listaFilme = stub.getFilmeUsuario(user.getEmail());
             
             countMax = listaFilme.size();
 
@@ -161,7 +161,21 @@ public class Home extends javax.swing.JFrame {
 
     private void explorarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_explorarButtonActionPerformed
         
-        Explorar exp = new Explorar(user);
+        try {
+
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+
+            SaveService stub = (SaveService) registry.lookup("Save");
+
+            listaFilme = stub.getFilme();
+            
+            countMax = listaFilme.size();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+                
+        Explorar exp = new Explorar(user, listaFilme, countMax);
         
         exp.setVisible(true);
         this.dispose();

@@ -44,7 +44,9 @@ public class Filmes extends javax.swing.JFrame {
         this.listaFilme = listaFilme;
         this.countMax = countMax;
         
+        listarFilmes();
         filmePoster();
+        exibirMenu();
     }
     
     //Método para exibir funções da página Filmes
@@ -70,6 +72,7 @@ public class Filmes extends javax.swing.JFrame {
     
     //Método para exibir funções do lista
     public void exibirLista(){
+        
         scrollBox.show();
         filmesTable.show();
         voltarButton.show();

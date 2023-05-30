@@ -5,8 +5,6 @@ import com.api.server.rmi.modules.Usuario;
 import java.awt.Image;
 import java.io.InputStream;
 import java.net.URL;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,7 +13,6 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import com.api.server.rmi.SaveService;
 
 public class Explorar extends javax.swing.JFrame {
     
@@ -30,11 +27,13 @@ public class Explorar extends javax.swing.JFrame {
 
     }
 
-    public Explorar(Usuario user){
+    public Explorar(Usuario user, List listaFilme, int countMax){
         initComponents();
         
-        filmePoster();
         this.user = user;
+        this.listaFilme = listaFilme;
+        this.countMax = countMax;
+        filmePoster();
     }
 
     // Método para exibir filmes
@@ -239,7 +238,7 @@ public class Explorar extends javax.swing.JFrame {
     private void esqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esqButtonActionPerformed
 
         if (count == 0) {
-            mensagemPopUp("Não possue mais filme");
+            mensagemPopUp("Não possue mais filmes");
         } else {
             count--;
             filmePoster();
@@ -249,7 +248,7 @@ public class Explorar extends javax.swing.JFrame {
     private void dirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirButtonActionPerformed
 
         if (count + 1 == countMax) {
-            mensagemPopUp("Não possue mais filme");
+            mensagemPopUp("Não possue mais filmes");
         } else {
             count++;
             filmePoster();
