@@ -8,6 +8,7 @@ import com.api.server.modules.user.UserService;
 import com.api.server.rmi.modules.Filme;
 import com.api.server.rmi.modules.FilmeUsuario;
 import com.api.server.rmi.modules.Usuario;
+import org.hibernate.tool.schema.spi.SqlScriptException;
 import org.springframework.stereotype.Component;
 
 import java.rmi.RemoteException;
@@ -32,9 +33,14 @@ public class SaveImpl implements SaveService  {
     }
 
     public boolean cadastrar(String email, String nome) throws RemoteException {
-        UserDto user = mapToUserDto(email, nome);
-        userService.createUser(user);
-        return true;
+        try {
+            UserDto user = mapToUserDto(email, nome);
+            userService.createUser(user);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     public boolean login(String login) throws RemoteException {
@@ -42,7 +48,7 @@ public class SaveImpl implements SaveService  {
         try {
             UserDto user = userService.getUserByEmail(login);
             return !user.getName().isEmpty();
-        } catch (Exception e) {
+        } catch (SqlScriptException e) {
             return false;
         }
 
@@ -73,18 +79,28 @@ public class SaveImpl implements SaveService  {
     }
 
     public boolean excluirUsuario(String email) throws RemoteException {
-        return userService.deleteUser(email);
+        try{
+            return userService.deleteUser(email);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean adicionarFilme(FilmeUsuario filme, String email) throws RemoteException {
-        UserDto user = userService.getUserByEmail(email);
 
-        MoviesDto movie = mapToMoviesDto(filme);
-        movie.setUser(user);
+        try {
+            UserDto user = userService.getUserByEmail(email);
 
-        moviesService.createMovie(movie);
+            MoviesDto movie = mapToMoviesDto(filme);
+            movie.setUser(user);
 
-        return true;
+            moviesService.createMovie(movie);
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     public List<Filme> getFilme2(String filme) throws RemoteException {
