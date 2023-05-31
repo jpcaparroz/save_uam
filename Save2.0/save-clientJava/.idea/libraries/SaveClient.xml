@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SaveClient">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/SaveClient/dist/SaveClient.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
