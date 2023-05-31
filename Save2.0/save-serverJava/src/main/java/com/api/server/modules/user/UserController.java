@@ -43,9 +43,10 @@ public class UserController {
     }
 
     @PutMapping
-    ResponseEntity<UserDto> updateUser(@RequestParam("email") String email) {
+    ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,
+                                       @RequestParam("id") Long id) {
         return ResponseEntity.ok()
-                .body(userService.getUserByEmail(email));
+                .body(userService.updateUser(id, userDto));
     }
 
     @DeleteMapping

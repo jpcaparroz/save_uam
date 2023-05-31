@@ -24,7 +24,8 @@ public interface UserClient {
     ResponseEntity<Set<MoviesDto>> getMoviesFromUser(@RequestParam("email") String email);
 
     @PutMapping("/user")
-    ResponseEntity<UserDto> updateUser(@RequestParam("email") String email);
+    ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,
+                                       @RequestParam("id") Long id);
 
     @DeleteMapping("/user")
     ResponseEntity<UserDto> deleteUser(@RequestParam("email") String email);
