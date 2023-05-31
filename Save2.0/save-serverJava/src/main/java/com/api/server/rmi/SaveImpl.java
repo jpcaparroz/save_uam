@@ -38,8 +38,14 @@ public class SaveImpl implements SaveService  {
     }
 
     public boolean login(String login) throws RemoteException {
-        UserDto user = userService.getUserByEmail(login);
-        return !user.getName().isEmpty();
+
+        try {
+            UserDto user = userService.getUserByEmail(login);
+            return !user.getName().isEmpty();
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     public Usuario getUsuario(String login) throws RemoteException {
