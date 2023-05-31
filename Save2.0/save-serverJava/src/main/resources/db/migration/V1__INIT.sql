@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `user`
 (
     `id`    BIGINT AUTO_INCREMENT,
-    `email` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL UNIQUE ,
     `name`  VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
