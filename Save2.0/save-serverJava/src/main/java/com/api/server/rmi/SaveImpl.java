@@ -12,6 +12,7 @@ import org.hibernate.tool.schema.spi.SqlScriptException;
 import org.springframework.stereotype.Component;
 
 import java.rmi.RemoteException;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -55,27 +56,43 @@ public class SaveImpl implements SaveService  {
     }
 
     public Usuario getUsuario(String login) throws RemoteException {
-        return mapToUsuario(userService.getUserByEmail(login));
+        try {
+            return mapToUsuario(userService.getUserByEmail(login));
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public List<FilmeUsuario> getFilmeUsuario(String email) throws RemoteException {
-        return userService.getUserByEmail(email)
-                .getMovies()
-                .stream()
-                .map(this::mapToFilmeUsuario)
-                .toList();
+        try {
+            return userService.getUserByEmail(email)
+                    .getMovies()
+                    .stream()
+                    .map(this::mapToFilmeUsuario)
+                    .toList();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
     }
 
     public List<FilmeUsuario> getFilme() throws RemoteException {
-        return moviesService.getMovies().stream()
-                .map(this::mapToFilmeUsuario)
-                .toList();
+        try {
+            return moviesService.getMovies().stream()
+                    .map(this::mapToFilmeUsuario)
+                    .toList();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
     }
 
     public List<Usuario> getUsuarios() throws RemoteException {
-        return userService.getAllUsers().stream()
-                .map(this::mapToUsuario)
-                .toList();
+        try {
+            return userService.getAllUsers().stream()
+                    .map(this::mapToUsuario)
+                    .toList();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
     }
 
     public boolean excluirUsuario(String email) throws RemoteException {
@@ -104,15 +121,23 @@ public class SaveImpl implements SaveService  {
     }
 
     public List<Filme> getFilme2(String filme) throws RemoteException {
-        return omdbService.searchMovies(filme).stream()
-                .map(this::toFilme)
-                .toList();
+        try {
+            return omdbService.searchMovies(filme).stream()
+                    .map(this::toFilme)
+                    .toList();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
     }
 
     public List<Filme> getMelhoresFilmes() throws RemoteException {
-        return omdbService.getTopChart().stream()
-                .map(this::toFilme)
-                .toList();
+        try {
+            return omdbService.getTopChart().stream()
+                    .map(this::toFilme)
+                    .toList();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
     }
 
     private Usuario mapToUsuario(UserDto userDto) {
