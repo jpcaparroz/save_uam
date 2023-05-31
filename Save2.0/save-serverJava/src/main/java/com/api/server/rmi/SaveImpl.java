@@ -49,7 +49,7 @@ public class SaveImpl implements SaveService  {
         try {
             UserDto user = userService.getUserByEmail(login);
             return !user.getName().isEmpty();
-        } catch (SqlScriptException e) {
+        } catch (Exception e) {
             return false;
         }
 
