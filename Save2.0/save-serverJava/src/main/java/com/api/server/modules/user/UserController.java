@@ -50,8 +50,8 @@ public class UserController {
     }
 
     @DeleteMapping
-    ResponseEntity<UserDto> deleteUser(@RequestParam("email") String email) {
+    ResponseEntity<Boolean> deleteUser(@RequestParam("email") String email) {
         return ResponseEntity.ok()
-                .body(userService.getUserByEmail(email));
+                .body(userService.deleteUser(email));
     }
 }

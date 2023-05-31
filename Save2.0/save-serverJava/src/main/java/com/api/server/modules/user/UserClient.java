@@ -28,6 +28,6 @@ public interface UserClient {
                                        @RequestParam("id") Long id);
 
     @DeleteMapping("/user")
-    ResponseEntity<UserDto> deleteUser(@RequestParam("email") String email);
+    ResponseEntity<Boolean> deleteUser(@RequestParam("email") String email);
 
 }
