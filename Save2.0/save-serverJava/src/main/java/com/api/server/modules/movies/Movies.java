@@ -12,6 +12,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Table(name = "movies")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
