@@ -1,11 +1,8 @@
 import com.api.server.rmi.SaveService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.rmi.*;
 import java.rmi.registry.*;
 import java.rmi.registry.Registry;
-import java.util.logging.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +15,7 @@ public class IndexTest {
         SaveService stub = (SaveService) registry.lookup("Save");
 
         String nomeT = "testTrue";
-        String emailT = "testTrue";
+        String emailT = "testTrue@email.com";
 
         String nomeF ="admin";
         String emailF = "root@admin.com";
@@ -37,7 +34,7 @@ public class IndexTest {
         SaveService stub = (SaveService) registry.lookup("Save");
 
         String emailT = "root@admin.com";
-        String emailF = "testFalse";
+        String emailF = "testFalse@email.com";
 
         assertTrue(stub.login(emailT));
         assertFalse(stub.login(emailF));
