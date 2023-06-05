@@ -2,7 +2,7 @@ server:
   port: 5000
 
 container:
-  database-url: localhost
+  database-url: mariadb
 
 top-chart:
   url: https://api.npoint.io/f403c8828141f5e92307
