@@ -28,7 +28,7 @@ public class OmdbController {
     }
 
     @GetMapping("/topChart")
-    ResponseEntity<List<MoviesDto>> searchMovies() {
+    ResponseEntity<List<MoviesDto>> getTopChart() {
         return ResponseEntity.ok()
                 .body(omdbService.getTopChart());
     }
