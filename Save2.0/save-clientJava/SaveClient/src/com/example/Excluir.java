@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import com.api.server.rmi.SaveService;
 
 public class Excluir extends javax.swing.JFrame {
+
+    private static final String SERVER_IP = "127.0.0.1";
     
     Usuario user;
     List <Usuario> usuarios = new ArrayList<>();
@@ -35,7 +37,7 @@ public class Excluir extends javax.swing.JFrame {
         defaultUsuarios.setRowCount(0);
 
         try {
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+            Registry registry = LocateRegistry.getRegistry(SERVER_IP, 18000);
 
             SaveService stub = (SaveService) registry.lookup("Save");
                        
@@ -175,7 +177,7 @@ public class Excluir extends javax.swing.JFrame {
 
             String excluir = excluirCombo.getSelectedItem().toString();
 
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+            Registry registry = LocateRegistry.getRegistry(SERVER_IP, 18000);
 
             SaveService stub = (SaveService) registry.lookup("Save");
 

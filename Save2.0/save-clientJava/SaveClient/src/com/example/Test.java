@@ -11,12 +11,14 @@ import java.rmi.registry.Registry;
  * @author Joao Pedro
  */
 public class Test {
+
+    private static final String SERVER_IP = "127.0.0.1";
     
     public static void main(String[] args) throws RemoteException, NotBoundException {
         
         try {
 
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+            Registry registry = LocateRegistry.getRegistry(SERVER_IP, 18000);
 
             SaveService stub = (SaveService) registry.lookup("Save");
             

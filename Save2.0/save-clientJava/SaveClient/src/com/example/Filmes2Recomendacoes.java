@@ -19,6 +19,8 @@ import com.api.server.rmi.SaveService;
 import com.api.server.rmi.modules.Filme;
 
 public class Filmes2Recomendacoes extends javax.swing.JFrame {
+
+    private static final String SERVER_IP = "127.0.0.1";
     
     Usuario user;
     
@@ -45,7 +47,7 @@ public class Filmes2Recomendacoes extends javax.swing.JFrame {
         
         try {
 
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+            Registry registry = LocateRegistry.getRegistry(SERVER_IP, 18000);
 
             SaveService stub = (SaveService) registry.lookup("Save");
             

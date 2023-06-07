@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
 import com.api.server.rmi.SaveService;
 
 public class Adicionar extends javax.swing.JFrame {
+
+    private static final String SERVER_IP = "127.0.0.1";
     
     Usuario user;
     FilmeUsuario filme;
@@ -197,7 +199,7 @@ public class Adicionar extends javax.swing.JFrame {
     private void likeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_likeButtonActionPerformed
         try {
 
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 18000);
+            Registry registry = LocateRegistry.getRegistry(SERVER_IP, 18000);
 
             SaveService stub = (SaveService) registry.lookup("Save");
 
