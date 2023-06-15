@@ -14,23 +14,6 @@ services:
     networks:
       - backend
     restart: on-failure
-  save:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-      - "18000:18000"
-    depends_on:
-      mariadb:
-        condition: service_healthy
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:5000/actuator/healthy" ]
-      interval: 5s
-      retries: 10
-    networks:
-      - backend
-    restart: on-failure
 networks:
   backend:
     driver: bridge
